@@ -303,6 +303,11 @@ add_filter( 'walker_nav_menu_start_el', 'twentyfifteen_nav_description', 10, 4 )
 		add_image_size( 'header_logo_image', 241, 211, true ); //(cropped)
 	}
 	
+	////// Add image size for event image.
+	if ( function_exists( 'add_image_size' ) ) {
+		add_image_size( 'event_home_image', 135, 68, true ); //(cropped)
+	}
+	
 	////////////// Create a new widget for Home page Full /////////////
 	if( function_exists('register_sidebar')){
 		register_sidebar(array(
@@ -337,6 +342,41 @@ add_filter( 'walker_nav_menu_start_el', 'twentyfifteen_nav_description', 10, 4 )
 		));
 	}
 	
+	 
+	// add_action( 'vc_before_init', 'homepageWithVC' );
+	// function homepageWithVC() {
+	   // vc_map( array(
+		  // "name" => __( "Bar tag test", "my-text-domain" ),
+		  // "base" => "bartag",
+		  // "class" => "",
+		  // "category" => __( "Content", "my-text-domain"),
+		  // 'admin_enqueue_js' => array(get_template_directory_uri().'/vc_extend/bartag.js'),
+		  // 'admin_enqueue_css' => array(get_template_directory_uri().'/vc_extend/bartag.css'),
+		  // "params" => array(
+			 // array(
+				// "type" => "textfield",
+				// "holder" => "div",
+				// "class" => "",
+				// "heading" => __( "Text", "my-text-domain" ),
+				// "param_name" => "foo",
+				// "value" => __( "Default param value", "my-text-domain" ),
+				// "description" => __( "Description for foo param.", "my-text-domain" )
+			 // )
+		  // )
+	   // ) );
+	// }
+	
+	
+	// // [bartag foo="foo-value"]
+	// add_shortcode( 'bartag', 'bartag_func' );
+	// function bartag_func( $atts ) {
+	   // extract( shortcode_atts( array(
+		  // 'foo' => 'something'
+	   // ), $atts ) );
+	  
+	   // return "foo = {$foo}";
+	// }
+
 	
 /**
  * Add a `screen-reader-text` class to the search form's submit button.

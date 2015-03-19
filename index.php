@@ -21,6 +21,21 @@ get_header(); ?>
 	<?php if ( is_active_sidebar( 'home-page-full' ) ) : ?>
 		<?php dynamic_sidebar( 'home-page-full' ); ?>
 	<?php endif; ?> 
+	<?php
+
+		// $content = '<div class="container">
+      // <div class="row">
+        // <div class="col-lg-12 cl=ol-md-12">
+          // <p><span>We advance the public purpose of colleges and universities by deepening their ability</span> to improve community life and to educate students for civic and social responsibility.</p>
+          // <button>learn more about our work</button>
+        // </div>
+      // </div>
+    // </div>';
+		// $editor_id = 'mycustomeditor';
+
+		// wp_editor( $content, $editor_id );
+
+		?>
   </div>
   <div class="mobile-section">
     <ul>
@@ -84,48 +99,50 @@ get_header(); ?>
   <!--=====EVENT Sec===!-->
   <div class="container dextop-view">
     <div class="event-product">
-      <h1>FEATURED EVENTS <span><a href="#">See All</a></span></h1>
+      <h1>FEATURED EVENTS <span><a href="<?php echo site_url().'/events/'; ?>">See All</a></span></h1>
       <div class="clearfix"></div>
     </div>
     <div class="row">
       <div class="slide-warp">
+	  
+	  <?php 
+	  ///// Get latest 3 events from the event list. 
+		$events = new WP_Query();
+		$eventList = $events->query('post_type=tribe_events&posts_per_page=3&order=DESC');
+		
+		// echo '<pre>';
+		// print_r($eventList); 
+		// echo '</pre>';
+		 ?>
+	  
         <ul>
+		<?php   if( $eventList[0]->ID ) : 
+				
+				foreach($eventList as $rp) :	?>
           <li class="col-lg-4 col-sm-4 col-md-4">
-            <div class="event-box">
-              <div class="post-date">
-                <h2>July 14 2014 <span>Los Vegas</span></h2>
-                <img src="<?php bloginfo('template_url'); ?>/images/post-pic.png" alt="" title=""/> </div>
-              <div class="post-info">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-                <h3>Los Vegas <span> July 14 2014</span></h3>
-                <i class="icon-hover"></i> </div>
-              <div class="clearfix"></div>
-            </div>
+            <a href="<?php echo get_permalink( $rp->ID ); ?>">
+				<div class="event-box">
+				  <div class="post-date">
+				  
+				  <?php echo $venue_address = tribe_get_meta( 'tribe_event_venue_address' );  ?>
+				  
+					<h2><?php echo date('F d Y', strtotime($rp->EventStartDate)); ?> <span>Los Vegas </span></h2>
+				   
+					<?php if( get_the_post_thumbnail( $rp->ID) ){ echo get_the_post_thumbnail( $rp->ID, 'event_home_image' ); }else{ ?> <img src="<?php echo bloginfo('template_url'); ?>/images/post-pic.png" alt="" title=""/> <?php }?>
+				   </div>
+				   
+				  <div class="post-info">
+					<p><?php echo $rp->post_title; ?></p>
+					<h3>Los Vegas <span> <?php echo date('F d Y', strtotime($rp->EventStartDate)); ?></span></h3>
+					<i class="icon-hover"></i> </div>
+				  <div class="clearfix"></div>
+				</div>
+			</a>
           </li>
-          <li class="col-lg-4 col-sm-4 col-md-4">
-            <div class="event-box">
-              <div class="post-date">
-                <h2>July 14 2014 <span>Los Vegas</span></h2>
-                <img src="<?php bloginfo('template_url'); ?>/images/post-pic.png" alt="" title=""/> </div>
-              <div class="post-info">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-                <h3>Los Vegas <span> July 14 2014</span></h3>
-                <i class="icon-hover"></i> </div>
-              <div class="clearfix"></div>
-            </div>
-          </li>
-          <li class="col-lg-4 col-sm-4 col-md-4">
-            <div class="event-box">
-              <div class="post-date">
-                <h2>July 14 2014 <span>Los Vegas</span></h2>
-                <img src="<?php bloginfo('template_url'); ?>/images/post-pic.png" alt="" title=""/> </div>
-              <div class="post-info">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-                <h3>Los Vegas <span> July 14 2014</span></h3>
-                <i class="icon-hover"></i> </div>
-              <div class="clearfix"></div>
-            </div>
-          </li>
+		  <?php 
+		  endforeach; 
+		  endif; ?>
+          
         </ul>
       </div>
     </div>

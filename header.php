@@ -49,7 +49,7 @@
   <header>
     <div class="banner-main">
 	<!-- Show banners from admin section using reverse slider. -->
-	<?php if( is_home() ): ?>
+	<?php if( is_page('Home') ): ?>
       <div class="flexslider">
         <?php echo do_shortcode( '[rev_slider home_page]' ); ?>
       </div>
@@ -89,11 +89,23 @@
               </div>
               <div class="second-part">
                 <div class="sec-list">
-                  <ul>
+				<?php 
+				  /////// Show 'Who we are' menu can manage from admin section.
+				  $bannerMenu = array(
+					'menu'            => 'Menu at banner',
+					'echo'            => true,
+					'before'          => '',
+					'after'           => '',
+					'items_wrap'      => '<ul>%3$s</ul>',
+					'walker'          => ''
+				);
+						wp_nav_menu( $bannerMenu ); ?>
+				
+                  <!--<ul>
                     <li><a href="#">Who we are</a></li>
                     <li><a href="#">What we do</a></li>
                     <li><a href="#">Resources</a></li>
-                  </ul>
+                  </ul> -->
                   <div class="clearfix"></div>
                 </div>
                 <div class="search-part">
