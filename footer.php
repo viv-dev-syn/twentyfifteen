@@ -10,7 +10,7 @@
  */
 ?>
 
-	</div><!-- .site-content -->
+	
 	<!--=====Footer Sec===!-->
   <footer class="footer-bg">
     <div class="container">

@@ -2561,6 +2561,43 @@ p > video {
 }
 
 
+
+/* 2015-03-21 */
+
+
+.mr-none{ margin: 0px !important;}
+.mr-none p{ margin: 0px !important;}
+
+.home .vc_col-sm-12
+{
+	padding: 0px;
+}
+.home .vc_row{
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.mealing-part input {
+    background: none repeat scroll 0 0 #434343;
+    border: medium none;
+    color: #C2BCBC;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 13px;
+    height: 32px;
+    padding: 0 10px;
+    width: 165px;
+}
+
+/* 2015-03-21 */
+
+
+
+
+
+
+
+
+
 /**
  * 15.0 Media Queries
  */

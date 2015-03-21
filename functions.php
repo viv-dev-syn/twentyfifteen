@@ -411,3 +411,26 @@ require get_template_directory() . '/inc/template-tags.php';
  * @since Twenty Fifteen 1.0
  */
 require get_template_directory() . '/inc/customizer.php';
+
+
+//Prevent from removing span from editor
+function myextensionTinyMCE($init) {
+    // Command separated string of extended elements
+    $ext = 'span[id|name|class|style]';
+
+    // Add to extended_valid_elements if it alreay exists
+    if ( isset( $init['extended_valid_elements'] ) ) {
+        $init['extended_valid_elements'] .= ',' . $ext;
+    } else {
+        $init['extended_valid_elements'] = $ext;
+    }
+
+    // Super important: return $init!
+    return $init;
+}
+
+add_filter('tiny_mce_before_init', 'myextensionTinyMCE' ); 
+
+//remove auto p 
+remove_filter( 'the_content', 'wpautop' );
+remove_filter( 'the_excerpt', 'wpautop' );

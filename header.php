@@ -41,11 +41,10 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php //body_class(); ?>>
+<body <?php body_class(); ?>>
 <!--===================Main Container============================-->
 <div id="main-container">
   <!--=====Header start====-->
-  
   <header>
     <div class="banner-main">
 	<!-- Show banners from admin section using reverse slider. -->

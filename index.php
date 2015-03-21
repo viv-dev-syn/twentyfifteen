@@ -13,10 +13,9 @@
  * @subpackage Twenty_Fifteen
  * @since Twenty Fifteen 1.0
  */
-
 get_header(); ?>
 
-	<div class="full-bg">
+<div class="full-bg">
     
 	<?php if ( is_active_sidebar( 'home-page-full' ) ) : ?>
 		<?php dynamic_sidebar( 'home-page-full' ); ?>
@@ -45,7 +44,7 @@ get_header(); ?>
     <div class="clearfix"></div>
     <div class="mobile-info">
       <?php if ( is_active_sidebar( 'home-page-mobile' ) ) : ?>
-		<?php dynamic_sidebar( 'home-page-mobile' ); ?>
+		<?php //dynamic_sidebar( 'home-page-mobile' ); ?>
 	<?php endif; ?> 
     </div>
   </div>
@@ -97,6 +96,7 @@ get_header(); ?>
     </div>
   </div>
   <!--=====EVENT Sec===!-->
+  
   <div class="container dextop-view">
     <div class="event-product">
       <h1>FEATURED EVENTS <span><a href="<?php echo site_url().'/events/'; ?>">See All</a></span></h1>
@@ -148,6 +148,7 @@ get_header(); ?>
     </div>
   </div>
   <!--=====Resources Sec===!-->
+  
   <div class="container">
     <div class="event-product">
       <h1>RESOURCES <span><a href="#">See All</a></span></h1>
