@@ -434,3 +434,114 @@ add_filter('tiny_mce_before_init', 'myextensionTinyMCE' );
 //remove auto p 
 remove_filter( 'the_content', 'wpautop' );
 remove_filter( 'the_excerpt', 'wpautop' );
+
+
+//------------- Shortcode for Resources Section ----------------------
+function events_func( $atts ) {
+
+	if( $atts['num_post'] != '' ){
+		$num_post = $atts['num_post'];
+	}else{
+		$num_post = 3;
+	}
+
+	$eventList = get_events ();
+	
+	$eventList = array_reverse( $eventList );
+	
+	$html = '';
+	if( count( $eventList ) > 0 ){
+ 
+  
+  $html .='<div class="container dextop-view">
+    <div class="event-product">
+      <h1>FEATURED EVENTS <span><a href="'. events_get_events_link ().'">See All</a></span></h1>
+      <div class="clearfix"></div>
+    </div>
+    <div class="row">
+      <div class="slide-warp">
+        <ul>';
+		$i=1;
+		foreach( $eventList as $event ){
+			
+			if( $i > $num_post )
+				break;
+			
+			setup_postdata( $event ); 
+		
+			$id = $event->ID;
+		
+			$venue = sp_get_venue ( $event->ID );
+			$date = sp_get_start_date (  $event->ID = null, $showtime = false, $dateFormat = '' );
+			$guid = $event->guid;
+			
+			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $id ), 'large' );
+			
+			$url 	= $thumb['0'];
+			
+			//echo tribe_event_featured_image( $id, 'full', false );
+		
+          $html .='<li class="col-lg-4 col-sm-4 col-md-4">
+		  
+		  <a href="'.$guid.'">
+            <div class="event-box">
+              <div class="post-date">
+                <h2>'.$date.'<span>'.$venue.'</span></h2>';
+                
+					if( $url != '' ){ 
+					$html .='<img src="'.$url.'" alt="" title="" width="135" />';
+						}else{
+					$html .='<img src="'.get_bloginfo("template_url").'/images/post-pic.png" alt="" title=""/>'; 
+					}
+
+				$html .='</div>
+              <div class="post-info">
+                <p>'.do_shortcode($event->post_content).'</p>
+                <h3>'.$venue.'<span>'.$date.'</span></h3>
+                <i class="icon-hover"></i> </div>
+              <div class="clearfix"></div>
+            </div>
+			</a>
+          </li>';
+		  
+		  $i++; }
+         
+        $html .='</ul>
+      </div>
+    </div>
+  </div>';
+  
+ 
+	}
+
+	return $html;
+}
+add_shortcode( 'EVENTS', 'events_func' );
+
+//Get excerpt character length
+function custom_excerpt_length( $length ) {
+	return 160;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+
+//Get excerpt read more 
+function custom_excerpt_more( $more ) {
+	return '...';
+}
+add_filter( 'excerpt_more', 'custom_excerpt_more' );
+
+//Title length for resource
+function limit_word_count($title) {
+	
+	$post_types = get_post_type();
+	
+	if( $post_types == "resource" ){
+	
+		$title = substr($title, 0, 20);
+		
+		$title = substr($title, 0, 18);
+		$title .= '...';
+	}
+    return $title;
+}
+add_filter('the_title', 'limit_word_count');

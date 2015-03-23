@@ -108,8 +108,19 @@
                   <div class="clearfix"></div>
                 </div>
                 <div class="search-part">
-                  <input type="text"/>
-                  <i class="search-icon"><img src="<?php bloginfo('template_url'); ?>/images/search-icon.png" alt="" title=""/></i> </div>
+                  
+				  
+                  
+				  
+<form role="search" method="get" id="searchform" class="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+	<div>
+		
+		<input class="search-submit" type="text" value="<?php echo get_search_query(); ?>" name="s" id="s" />
+		<input type="submit" class="sumit-serch" id="searchsubmit" value="" />
+	</div>
+</form>
+				  
+				</div>
               </div>
             </div>
           </div>
