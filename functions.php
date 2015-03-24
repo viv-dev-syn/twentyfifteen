@@ -529,19 +529,3 @@ function custom_excerpt_more( $more ) {
 	return '...';
 }
 add_filter( 'excerpt_more', 'custom_excerpt_more' );
-
-//Title length for resource
-function limit_word_count($title) {
-	
-	$post_types = get_post_type();
-	
-	if( $post_types == "resource" ){
-	
-		$title = substr($title, 0, 20);
-		
-		$title = substr($title, 0, 18);
-		$title .= '...';
-	}
-    return $title;
-}
-add_filter('the_title', 'limit_word_count');
