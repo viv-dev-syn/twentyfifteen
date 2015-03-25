@@ -52,6 +52,8 @@
       <div class="flexslider">
         <?php echo do_shortcode( '[rev_slider home_page]' ); ?>
       </div>
+	  <?php else: ?>
+	  <div class="inside-banner"></div>
 	  <?php endif; ?>
       <!--==================Menu Start=================--->
       <nav class="menu-part">
@@ -124,7 +126,14 @@
               </div>
             </div>
           </div>
-        </div>
+		<?php if(!is_page('home')): ?>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12">
+				  <h1 class="inside-pageHeading"><?php echo get_the_title(); ?></h1>
+				</div>
+            </div>
+		<?php endif; ?>
+	   </div>
       </nav>
       <!--==================Menu Start=================--->
     </div>

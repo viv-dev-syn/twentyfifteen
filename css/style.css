@@ -165,10 +165,8 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
 	color : #A11C3A;
 }
 
-i.new-link {
-	background: url("../images/search-red.png") no-repeat scroll left center rgba(0, 0, 0, 0);
-    color: rgba(0, 0, 0, 0);
-    display: inline-block;
+._read_more  img{
+  margin: 10px 5px 0 0!important;
 }
 
 .no-featured-image {
@@ -179,7 +177,78 @@ i.new-link {
 
 ._sort-terms{
 	position : absolute;
-	left:-99999px;
+	left:-99999px;   
+}
+
+/* The CSS */
+._new-sorting select {
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;
+    border:none;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    background: none repeat scroll 0 0 #A11C3A;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: inherit;
+    font-style: italic;
+    margin: 0;
+	min-width : 150px; 
+}
+
+/* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    ._new-sorting select {padding-right:18px}
+}
+
+._new-sorting {position:relative; min-width : 150px; }
+._new-sorting:after {
+    content:'>';
+    font:20px "Consolas", monospace;
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    transform:rotate(90deg);
+    right:8px; top:2px;
+    padding:0 0 2px;
+    position:absolute;
+    pointer-events:none;
+	color: #fff;
+	
+}
+._new-sorting:before {
+    content:'';
+    height:30px;
+    background:none repeat scroll 0 0 #5D0418;
+    position:absolute;
+    pointer-events:none;
+    display:block;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+    right: 0;
+    top: 0;
+    width: 30px;
+	
+	
+}
+.js-wpv-view-layout>.row>.col-lg-3.col-md-3.col-sm-6:nth-child(n+9){
+	 display : none;
+}
+.inside-banner{background:url(../images/inside-banner.jpg) center top no-repeat; background-size:cover; height:445px;}
+
+.inside-pageHeading {
+    color: #FFFFFF;
+    font-size: 43px;
+    font-weight: bold;
+    padding: 80px 0 0;
+    text-transform: uppercase;
 }
 
 /* END CODE BY 1705  */

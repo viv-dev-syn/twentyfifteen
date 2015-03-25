@@ -529,3 +529,12 @@ function custom_excerpt_more( $more ) {
 	return '...';
 }
 add_filter( 'excerpt_more', 'custom_excerpt_more' );
+
+add_shortcode('wp_trim_title', 'trim_shortcode');
+function trim_shortcode($atts, $content = '') {
+  $content = wpv_do_shortcode($content);
+  if (strlen($content) > 45) {
+    $content = substr($content, 0, 45) . '...';
+  }
+  return $content;
+}
