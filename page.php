@@ -226,8 +226,8 @@ get_header(); ?>
     </div>
   </div><!-- .content-area -->
 <?php else : ?>
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+	<div class="container">
+		<div class="grid-section">
 
 		<?php
 		// Start the loop.
@@ -245,7 +245,7 @@ get_header(); ?>
 		endwhile;
 		?>
 
-		</main><!-- .site-main -->
+		</div><!-- .site-main -->
 	</div><!-- .content-area -->
 <?php endif ; ?>
 <?php get_footer(); ?>

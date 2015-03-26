@@ -129,7 +129,7 @@
 		<?php if(!is_page('home')): ?>
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12">
-				  <h1 class="inside-pageHeading"><?php echo get_the_title(); ?></h1>
+				  <h1 class="inside-pageHeading"><?php echo empty( $post->post_parent ) ? get_the_title( $post->ID ) : get_the_title( $post->post_parent ); ?></h1>
 				</div>
             </div>
 		<?php endif; ?>

@@ -528,6 +528,9 @@ add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 function custom_excerpt_more( $more ) {
 	return '...';
 }
+
+
+//To reduce charactor length if exceeds 45
 add_filter( 'excerpt_more', 'custom_excerpt_more' );
 
 add_shortcode('wp_trim_title', 'trim_shortcode');
@@ -537,4 +540,94 @@ function trim_shortcode($atts, $content = '') {
     $content = substr($content, 0, 45) . '...';
   }
   return $content;
+}
+
+//To show taxonomy if there are multiple
+add_shortcode('trim_taxonomy', 'trim_taxonomy_content');
+
+function trim_taxonomy_content($atts, $content = '') {
+  $content = wpv_do_shortcode($content);
+  
+  $content = explode(',',$content);
+  
+  if (strlen($content) > 45) {
+  //  $content = substr($content, 0, 45) . '...';
+  }
+  return $content[0];
+}
+
+add_shortcode('my-post-taxonomy', 'my_post_taxonomies_shortcode_render');
+ 
+function my_post_taxonomies_shortcode_render($atts) {
+    $post_id_atts = new WPV_wpcf_switch_post_from_attr_id($atts);
+ 
+    extract(
+        shortcode_atts( array('format' => 'link',
+                              'show' => 'name',
+                              'order' => 'asc'),
+                       $atts )
+    );
+ 
+    global $wplogger;
+     
+    $out = '';
+    if (empty($atts['type'])) {
+        return $out;
+    }
+    $types = explode(',', @strval($atts['type']));
+    if (empty($types)) {
+        return $out;
+    }
+     
+    global $post;
+    $separator = !empty($atts['separator']) ? @strval($atts['separator']) : ', ';
+    $out_terms = array();
+    foreach ($types as $taxonomy_slug) {
+        $terms = get_the_terms($post->ID, $taxonomy_slug);
+        if ( $terms && !is_wp_error( $terms )) {
+            foreach ($terms as $term) {
+                $text = $term->name;
+                switch ($show) {
+                    case 'description':
+                        if ($term->description != '') {
+                            $text = $term->description;
+                        }
+                        break;
+                     
+                    case 'count':
+                        $text = $term->count;
+                        break;
+                     
+                    case 'slug':
+                        $text = $term->slug;
+                        break;
+                }
+ 
+                $term_link = get_term_link($term, $taxonomy_slug);
+                if (is_wp_error($term_link)) {
+                    $wplogger->log('Term invalid - term_slug = ' . $term->slug . ' - taxonomy_slug = ' . $taxonomy_slug, WPLOG_DEBUG);
+                }
+                 
+                if ($format == 'text') {
+                    $out_terms[$term->name] = $text;
+                } else if ($format == 'url') {
+                    $out_terms[$term->name] = $term_link;
+                } else {
+                    $out_terms[$term->name] = '<a href="' . $term_link . '">' . $text . '</a>';
+                }
+            }
+        }
+    }
+    if (!empty($out_terms)) {
+        if ($order == 'asc') {
+            ksort($out_terms);
+        } elseif ($order == 'desc') {
+            ksort($out_terms);
+            $out_terms = array_reverse($out_terms);
+        }
+$out_terms = $out_terms[0]; // display-only-one-category
+        $out = implode($separator, $out_terms);
+    }
+    apply_filters('wpv_shortcode_debug','wpv-post-taxonomy', json_encode($atts), '', 'Data received from cache.', $out);
+    return $out;
 }
