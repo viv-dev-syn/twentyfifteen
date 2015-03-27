@@ -171,7 +171,7 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
 
 .no-featured-image {
     background: url("../images/sea-pic.png") no-repeat scroll center center rgba(0, 0, 0, 0);
-    min-height: 100px;
+    min-height: 90px;
     text-indent: -999999px;
 }
 
@@ -252,7 +252,7 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
 }
 
 /* END CODE BY 1705  */
-.resu-box p{color:#3b3b3b; font-size:14px; font-weight:300; line-height:22px; text-align:center; margin:0 10px;height:110px;}
+.resu-box p{color:#3b3b3b; font-size:14px; font-weight:300; line-height:22px; text-align:center; margin:0 10px;}
 .resu-box h4{background:#f4d39f; height:47px; line-height:47px; padding:0 20px; margin-top:25px; text-align:left;}
 .resu-box h4 a{background:url(../images/next-icon.png) right center no-repeat; padding-right:10px; color:#a11c3a; font-size:16px; font-weight:600;}
 .resu-box h4 span{display:none;}
@@ -425,3 +425,86 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
 .new-box p{color:#868686; font-size:16px; font-family: 'Philosopher', sans-serif; font-style:italic; padding:0 35px; line-height:18px; margin:10px 0;}
 .regi-button{background:#a11c3a; border:none; border-radius:4px; color:#fff; font-size:16px; font-family: 'Philosopher', sans-serif; font-style:italic; height:33px; padding:0 20px}
 .regi-button:hover{background:#c0193f;}
+
+
+/*=======================================What we do Css Start=================================*/
+.new-menu{background:#dddddd;  border-bottom:1px solid #fff; margin-bottom:45px;}
+.new-menu ul li{float:left; list-style:none; font-size:14px; font-weight:300; text-transform:uppercase; background:url(../images/sep.png) 0px 0px no-repeat !important; position:relative; line-height:38px;}
+.new-menu ul li:first-child{background:none;}
+.new-menu ul li a{color:#767676; display:block; padding:0 25px; margin-left:10px;}
+.new-menu ul li:hover span{background:url(../images/hover-left.png) left top no-repeat !important; display:block; height:38px; width:10px; position:absolute; left:0px; top:0px;}
+.new-menu ul li:hover i{background:url(../images/hover-right.png) right top no-repeat !important; display:block; height:38px; width:16px; position:absolute; right:-9px; top:0px;}
+.new-menu ul li:hover  a{background:#a7a7a7; color:#fff;text-decoration:none;}
+.new-menu ul li:first-child a{margin-left:0px;}
+
+.title-part{margin:0px; padding:0px;}
+.side-menu{background:#f5f5f5; border-radius:0 0 5px 5px; margin:0 0 55px 0;}
+.side-menu h1{color:#111111; font-size:13px; font-weight:bold; height:58px; line-height:58px; padding-left:22px; text-transform:uppercase;}
+/*background:#fff; */
+.side-menu ul li{list-style:none; font-size:14px; font-weight:500; text-transform:uppercase;  border-top:1px solid #c9d0d0;  position:relative;}
+.side-menu ul li:first-child{border-top:none;}
+.side-menu ul li > a{color:#373737; display:block; padding:20px 22px;}
+.side-menu ul li:hover a{color:#e9811b; text-decoration:none;}
+
+.sub-menu{background:url(../images/toggle2.png) right 12px no-repeat; margin-right:20px;}
+.sub-menu2{background:url(../images/toggle.png) right 12px no-repeat; margin-right:20px;}
+.toggle-menu{display:none;}
+.toggle-menu ul li{border-top:none;}
+.toggle-menu ul li a{color:#373737!important; padding:6px 22px;}
+.toggle-menu ul li:hover a{color:#a11c3a!important;}
+
+.contact-box{background:#d3d1d1; border-radius:4px; padding:33px 20px 33px 27px; margin-bottom:30px;}
+.contact-box h2{color:#000; font-size:18px; font-weight:600; text-transform:uppercase;}
+.contact-box h2 span{font-style:italic; text-transform:none; font-family: 'Philosopher', sans-serif; line-height:28px;}
+.contact-box button{background:#fff; border:none; border-radius:0px; color:#e9811b; display:block; font-size:16px; font-weight:600; height:55px; padding:0 45px; text-transform:uppercase; margin-top:25px;}
+.contact-box button:hover{color:#000;}
+
+.atricle-box{margin:0px;}
+.atricle-box h1{color:#e9811b; font-size:35px; font-weight:bold; text-transform:uppercase; margin-bottom:15px;}
+.atricle-box p{color:#3e3e3e; font-size:18px; font-weight:normal; line-height:30px;}
+.atricle-box h2{color:#e9811b; font-size:22px; font-weight:600; text-transform:uppercase; margin:40px 0 25px 0;}
+.atricle-box h3{color:#1a1919; font-size:22px; font-weight:500; margin-bottom:10px;}
+.sec-title{color:#3e3e3e; font-size:15px!important; text-align:justify; font-weight:normal; line-height:25px!important;}
+.atricle-box h4{color:#a11c3a; font-size:16px; font-weight:600; text-decoration:underline; margin:35px 0 60px 0;}
+.right-title{color:#e9811b!important; font-size:28px!important; font-weight:bold!important; text-transform:uppercase; line-height:40px!important; margin-top:55px;}
+.atricle-box h5{color:#e9811b; font-size:18px; font-weight:600; margin-left:40px; text-transform:uppercase;  margin-top:25px;}
+.atricle-box h5 span{font-weight:500; text-transform:none; display:block; line-height:25px;}
+
+.featured-main{margin:0px; padding:0px;}
+.featured-main h6{border:1px solid #d3d3d3; border-right:none; border-left:none; padding:30px 22px 30px 22px; color:#e9811b; font-size:24px; font-weight:500; text-transform:uppercase; margin-bottom:25px;}
+
+/*======================Catalayze campus engagement Pages css=====================================*/
+.tab-main{margin:0;}
+.tab-list li{background:#dddcdc; border-top:3px solid #dddcdc; float:left; font-size:22px; font-weight:600; text-transform:uppercase; padding:25px 79px; list-style:none; cursor:pointer;}
+.tab-list li+li{border-left:4px solid #ececec;}
+.tab-list li:hover ,.tab-list li.active{color:#e9811b; background:#f4f4f4; border-top:3px solid #e9811b;}
+
+.tab-title{background:#f4f4f4; padding:60px 35px 0px 35px;}
+.tab-title h1{color:#1a1919; font-size:22px; font-weight:500; margin-bottom:10px;}
+.tab-title p{color:#3e3e3e; font-size:15px; text-align:justify; font-weight:normal; line-height:25px;}
+.tab-title h2{color:#a11c3a; font-size:16px; font-weight:600; text-decoration:underline; margin:35px 0 60px 0;}
+.graph-section{margin:0;}
+.graph-heading{background:#98a8bc; border-radius:4px 4px 0 0; font-size:18px; text-transform:uppercase; text-align:center; padding:14px 0; color:#fff;}
+.graph-heading span{display:block; font-weight:300;}
+.graph-imageBox{background:#fff; border:1px solid #98a8bc; border-top:none; border-radius:0 0 4px 4px; text-align:center; padding:30px 0;}
+.graph-section h3{color:#a11c3a; font-size:18px; font-weight:600; line-height:25px; text-align:center; padding:30px 0; text-transform:uppercase;}
+.year-ratingSec{margin:0;}
+.month-staturech{margin-left:60px;}
+.month-pic img{margin:0 50px 30px 0px; float:left;}
+.year-heading{color:#a11c3a; font-size:30px; font-weight:bold;}
+.year-heading span{color:#474747; font-size:18px; font-weight:400; display:block; font-family: 'Philosopher', sans-serif; font-style:italic;}
+
+.year-heading2{color:#a11c3a; font-size:30px; font-weight:bold; margin-left:30px; float:left;}
+.year-heading2 span{color:#474747; font-size:18px; font-weight:400; display:block; font-family: 'Philosopher', sans-serif; font-style:italic;}
+
+.year-heading3{color:#a11c3a; font-size:30px; font-weight:bold; margin-left:60px; float:left;}
+.year-heading3 span{color:#474747; font-size:18px; font-weight:400; display:block; font-family: 'Philosopher', sans-serif; font-style:italic;}
+
+.section-middle{background:#f4f4f4; padding:120px 0 0 0;}
+.section-middle h6{border:1px solid #d3d3d3; color:#a11c3a; font-size:25px; font-weight:400; text-transform:uppercase; padding:35px 0; text-align:center; border-left:none; border-right:none;}
+.heading-h5{border:1px solid #d3d3d3; color:#a11c3a; font-size:25px; font-weight:400; text-transform:uppercase; padding:35px 0; text-align:center; border-left:none; border-right:none; margin-bottom:15px;}
+.grid-info2{padding:45px 30px;}
+.product-list{padding:0px 32px 35px 32px; margin-bottom:30px;}
+
+
+

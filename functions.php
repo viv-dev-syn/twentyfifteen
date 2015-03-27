@@ -128,6 +128,8 @@ add_action( 'after_setup_theme', 'twentyfifteen_setup' );
  *
  * @link https://codex.wordpress.org/Function_Reference/register_sidebar
  */
+ 
+ 
 function twentyfifteen_widgets_init() {
 	register_sidebar( array(
 		'name'          => __( 'Widget Area', 'twentyfifteen' ),
@@ -436,6 +438,7 @@ remove_filter( 'the_content', 'wpautop' );
 remove_filter( 'the_excerpt', 'wpautop' );
 
 
+
 //------------- Shortcode for Resources Section ----------------------
 function events_func( $atts ) {
 
@@ -530,14 +533,14 @@ function custom_excerpt_more( $more ) {
 }
 
 
-//To reduce charactor length if exceeds 45
+//To reduce charactor length if exceeds 38
 add_filter( 'excerpt_more', 'custom_excerpt_more' );
 
 add_shortcode('wp_trim_title', 'trim_shortcode');
 function trim_shortcode($atts, $content = '') {
   $content = wpv_do_shortcode($content);
-  if (strlen($content) > 45) {
-    $content = substr($content, 0, 45) . '...';
+  if (strlen($content) > 38) {
+    $content = substr($content, 0, 38) . '...';
   }
   return $content;
 }
@@ -556,78 +559,114 @@ function trim_taxonomy_content($atts, $content = '') {
   return $content[0];
 }
 
-add_shortcode('my-post-taxonomy', 'my_post_taxonomies_shortcode_render');
  
-function my_post_taxonomies_shortcode_render($atts) {
-    $post_id_atts = new WPV_wpcf_switch_post_from_attr_id($atts);
+function qt_custom_breadcrumbs() {
  
-    extract(
-        shortcode_atts( array('format' => 'link',
-                              'show' => 'name',
-                              'order' => 'asc'),
-                       $atts )
-    );
+  $showOnHome = 0; // 1 - show breadcrumbs on the homepage, 0 - don't show
+  //$delimiter = '&raquo;'; // delimiter between crumbs
+  $delimiter = '<i></i>'; // delimiter between crumbs
+  $home = 'Home'; // text for the 'Home' link
+  $showCurrent = 1; // 1 - show current post/page title in breadcrumbs, 0 - don't show
+  // $before = '<span class="current">'; // tag before the current crumb
+  // $after = '</span>'; // tag after the current crumb
+  $before = '<li><span></span> <a href="javascript:void(0);">'; // tag before the current crumb
+  $after = '</a>' . $delimiter . '</li>'; // tag after the current crumb
  
-    global $wplogger;
-     
-    $out = '';
-    if (empty($atts['type'])) {
-        return $out;
-    }
-    $types = explode(',', @strval($atts['type']));
-    if (empty($types)) {
-        return $out;
-    }
-     
-    global $post;
-    $separator = !empty($atts['separator']) ? @strval($atts['separator']) : ', ';
-    $out_terms = array();
-    foreach ($types as $taxonomy_slug) {
-        $terms = get_the_terms($post->ID, $taxonomy_slug);
-        if ( $terms && !is_wp_error( $terms )) {
-            foreach ($terms as $term) {
-                $text = $term->name;
-                switch ($show) {
-                    case 'description':
-                        if ($term->description != '') {
-                            $text = $term->description;
-                        }
-                        break;
-                     
-                    case 'count':
-                        $text = $term->count;
-                        break;
-                     
-                    case 'slug':
-                        $text = $term->slug;
-                        break;
-                }
+  global $post;
+  $homeLink = get_bloginfo('url');
  
-                $term_link = get_term_link($term, $taxonomy_slug);
-                if (is_wp_error($term_link)) {
-                    $wplogger->log('Term invalid - term_slug = ' . $term->slug . ' - taxonomy_slug = ' . $taxonomy_slug, WPLOG_DEBUG);
-                }
-                 
-                if ($format == 'text') {
-                    $out_terms[$term->name] = $text;
-                } else if ($format == 'url') {
-                    $out_terms[$term->name] = $term_link;
-                } else {
-                    $out_terms[$term->name] = '<a href="' . $term_link . '">' . $text . '</a>';
-                }
-            }
-        }
+  if (is_home() || is_front_page()) {
+ 
+    if ($showOnHome == 1) echo '<div id="crumbs"><a href="' . $homeLink . '">' . $home . '</a></div>';
+ 
+  } else {
+	echo '<ul>';
+    echo '<li><a href="' . $homeLink . '">' . $home . '</a> ' . $delimiter . '</li> ';
+ 
+    if ( is_category() ) {
+      $thisCat = get_category(get_query_var('cat'), false);
+      if ($thisCat->parent != 0) echo get_category_parents($thisCat->parent, TRUE, ' ' . $delimiter . ' ');
+      echo $before . 'Archive by category "' . single_cat_title('', false) . '"' . $after;
+ 
+    } elseif ( is_search() ) {
+      echo $before . 'Search results for "' . get_search_query() . '"' . $after;
+ 
+    } elseif ( is_day() ) {
+      echo '<li><span></span><a href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a> ' . $delimiter . ' </li>';
+      echo '<li><span></span><a href="' . get_month_link(get_the_time('Y'),get_the_time('m')) . '">' . get_the_time('F') . '</a> ' . $delimiter . ' ';
+      echo $before . get_the_time('d') . $after;
+ 
+    } elseif ( is_month() ) {
+      echo '<li><span></span><a href="' . get_year_link(get_the_time('Y')) . '">' . get_the_time('Y') . '</a> ' . $delimiter . ' </li>';
+      echo $before . get_the_time('F') . $after;
+ 
+    } elseif ( is_year() ) {
+      echo $before . get_the_time('Y') . $after;
+ 
+    } elseif ( is_single() && !is_attachment() ) {
+      if ( get_post_type() != 'post' ) {
+        $post_type = get_post_type_object(get_post_type());
+        $slug = $post_type->rewrite;
+        echo '<li><span></span><a href="' . $homeLink . '/' . $slug['slug'] . '>' . $post_type->labels->singular_name . '</a>' . $delimiter . '</li>';
+        if ($showCurrent == 1) echo   $before . get_the_title() . $after;
+      } else {
+        $cat = get_the_category(); $cat = $cat[0];
+        $cats = get_category_parents($cat, TRUE, ' ' . $delimiter . ' ');
+        if ($showCurrent == 0) $cats = preg_replace("#^(.+)\s$delimiter\s$#", "$1", $cats);
+        echo $cats;
+        if ($showCurrent == 1) echo $before . get_the_title() . $after;
+      }
+ 
+    } elseif ( !is_single() && !is_page() && get_post_type() != 'post' && !is_404() ) {
+      $post_type = get_post_type_object(get_post_type());
+      echo $before . $post_type->labels->singular_name . $after;
+ 
+    } elseif ( is_attachment() ) {
+      $parent = get_post($post->post_parent);
+      $cat = get_the_category($parent->ID); $cat = $cat[0];
+      echo get_category_parents($cat, TRUE, ' ' . $delimiter . ' ');
+      echo '<li><span></span><a href="' . get_permalink($parent) . '">' . $parent->post_title . '</a>' . $delimiter . '</li>';
+      if ($showCurrent == 1) echo  $before . get_the_title() . $after;
+ 
+    } elseif ( is_page() && !$post->post_parent ) {
+      if ($showCurrent == 1) echo $before . get_the_title() . $after;
+ 
+    } elseif ( is_page() && $post->post_parent ) {
+      $parent_id  = $post->post_parent;
+      $breadcrumbs = array();
+      while ($parent_id) {
+        $page = get_page($parent_id);
+        $breadcrumbs[] = '<li><span></span><a href="' . get_permalink($page->ID) . '">' . get_the_title($page->ID) . '</a>' . $delimiter . '</li>';
+        $parent_id  = $page->post_parent;
+      }
+      $breadcrumbs = array_reverse($breadcrumbs);
+      for ($i = 0; $i < count($breadcrumbs); $i++) {
+        echo $breadcrumbs[$i];
+        if ($i != count($breadcrumbs)-1) echo ' ' . $delimiter . ' ';
+      }
+      if ($showCurrent == 1) echo   $before . get_the_title() . $after;
+ 
+    } elseif ( is_tag() ) {
+      echo $before . 'Posts tagged "' . single_tag_title('', false) . '"' . $after;
+ 
+    } elseif ( is_author() ) {
+       global $author;
+      $userdata = get_userdata($author);
+      echo $before . 'Articles posted by ' . $userdata->display_name . $after;
+ 
+    } elseif ( is_404() ) {
+      echo $before . 'Error 404' . $after;
     }
-    if (!empty($out_terms)) {
-        if ($order == 'asc') {
-            ksort($out_terms);
-        } elseif ($order == 'desc') {
-            ksort($out_terms);
-            $out_terms = array_reverse($out_terms);
-        }
-$out_terms = $out_terms[0]; // display-only-one-category
-        $out = implode($separator, $out_terms);
+ 
+    if ( get_query_var('paged') ) {
+      if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) echo ' (';
+      echo __('Page') . ' ' . get_query_var('paged');
+      if ( is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author() ) echo ')';
     }
-    apply_filters('wpv_shortcode_debug','wpv-post-taxonomy', json_encode($atts), '', 'Data received from cache.', $out);
-    return $out;
+ 
+    echo '</ul>';
+ 
+  }
 }
+
+wp_enqueue_script( 'tinysort-js', get_template_directory_uri() . '/js/tinysort.js', array(), '1.0.0' );
