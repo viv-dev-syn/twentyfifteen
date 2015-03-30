@@ -169,10 +169,8 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
   margin: 10px 5px 0 0!important;
 }
 
-.no-featured-image {
-    background: url("../images/sea-pic.png") no-repeat scroll center center rgba(0, 0, 0, 0);
-    min-height: 90px;
-    text-indent: -999999px;
+.alternate_image {
+    padding: 29px 0px;
 }
 
 ._sort-terms{
@@ -251,10 +249,11 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
     text-transform: uppercase;
 }
 
+.js-wpv-filter-trigger-delayed{background:#ebb541; border-radius:4px; border:none; color:#fff; font-style:italic; font-family: 'Open Sans', sans-serif; height:40px; padding:0 60px 0 12px; width:100%;}
 /* END CODE BY 1705  */
 .resu-box p{color:#3b3b3b; font-size:14px; font-weight:300; line-height:22px; text-align:center; margin:0 10px;}
 .resu-box h4{background:#f4d39f; height:47px; line-height:47px; padding:0 20px; margin-top:25px; text-align:left;}
-.resu-box h4 a{background:url(../images/next-icon.png) right center no-repeat; padding-right:10px; color:#a11c3a; font-size:16px; font-weight:600;}
+.resu-box h4 a{padding-right:10px; color:#a11c3a; font-size:16px; font-weight:600;}
 .resu-box h4 span{display:none;}
 .resu-box > img{width:100%; /*max-height: 150px;*/}
 .resu-box h4:hover{background:#ed9813; display:block;}
@@ -321,7 +320,7 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
 .grid-bg{background:#fff; border:1px solid #ffc956; border-radius:5px;}
 .grid-search{background:#ffc956; padding:12px 15px; position:relative;}
 .type-box{background:#ebb541; border-radius:4px; border:none; color:#fff; font-style:italic; font-family: 'Open Sans', sans-serif; height:40px; padding:0 60px 0 12px; width:100%;}
-.search-pic{background:url(../images/icon-serch.png) right center no-repeat; border-radius:0px; position:absolute; right:25px; top:5px; border:none; border-left:1px solid #ffc956; width:33px; padding-top:33px;}
+.grid-bg .search-pic{background:url(../images/icon-serch.png) right center no-repeat; border-radius:0px; position:absolute; right:25px; top:5px; border:none; border-left:1px solid #ffc956; width:33px; padding:17px;}
 .grid-view{border-bottom:1px solid #ffc956; padding:25px;}
 .grid-view ul li{float:left; list-style:none; color:#313131; font-size:16px;}
 .grid-view ul li:first-child{font-weight:600; margin-right:30px;}
@@ -339,55 +338,131 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
 .filter-menu ul{background:#a7a7a7; padding:11px;}
 .filter-menu ul li{list-style:none; line-height:25px;}
 .filter-menu ul li a{color:#fff;}
+
+
+.accodian-heading{background:url(../images/ching-pic.png) right center no-repeat; color:#313131; font-size:15px; font-weight:500; border:1px solid #ccc; height:36px; margin-top:20px; padding-left:10px; line-height:35px;}
+.accodian-heading:hover{color:#e9811b; cursor:pointer;}
+.changeImg{background:url(../images/ching-pic2.png) right center no-repeat;}
+.accodian-matter{margin-top:15px; display:none;}
+.selectit{
+	width: 100%;
+	padding-left : 30px;
+	height: 28px;
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+	top: 3px;
+	background:url(../images/checkbox.png) scroll 0 center no-repeat;
+	margin-right:5px;
+}
+.selectit:hover{
+	background:url(../images/checkbox-hover.png) scroll 0 center no-repeat;
+}
+.selectit.selected{
+	background:url(../images/checkbox-selected.png) scroll 0 center no-repeat;
+}
+.selectit input[type="checkbox"]{
+	margin: 0;
+	position: absolute;
+	z-index: 2;            
+	cursor: pointer;
+	outline: none;
+	opacity: 0;
+	/* CSS hacks for older browsers */
+	_noFocusLine: expression(this.hideFocus=true); 
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	-khtml-opacity: 0;
+	-moz-opacity: 0;
+}
+/* Let's Beautify Our Form */
+.accodian-matter ul{
+    display: block;
+    padding: 2px 0;
+	font-weight:normal;
+	margin : 0px;
+}
+.accodian-matter ul li
+{
+	list-style : none;
+	
+}
+.accodian-matter input[type="submit"]{
+    float: left;
+    background: #f2f2f2;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    margin-top: 20px;
+    padding: 4px 10px;
+    cursor: pointer;
+    outline: none;
+}
+.accodian-matter input[type="submit"]:hover{
+    color: #fff;
+    border-color: #1b7aa9;
+    background-color: #239fdb;
+}
 .select-wrapper{
-		float: left;
-		display: inline-block;
-		border:2px solid #d8d8d8;            
-		background:url(../images/dropdown.png) no-repeat right center;
-		cursor: pointer;
-		border-radius:4px;
-	}
-	.select-wrapper, .select-wrapper select{
-		width: 100%;
-		height:50px;
-		line-height:35px;
-		color:#000;
-		font-size:15px;
-		margin-top:22px;
-	}
-	.select-wrapper:hover{
-		background:url(../images/dropdown-hover.png) no-repeat right center;
-		border-color: #239fdb;
-	}
-	.select-wrapper .holder{
-		display: block;
-		margin: 0 35px 0 5px;
-		white-space: nowrap;            
-		overflow: hidden;
-		cursor: pointer;
-		position: relative;
-		z-index:1;
-	}
-	.select-wrapper select{
-		margin: 0;
-		position: absolute;
-		z-index: 2;            
-		cursor: pointer;
-		outline: none;
-		opacity: 0;
-		/* CSS hacks for older browsers */
-		_noFocusLine: expression(this.hideFocus=true); 
-		-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-		filter: alpha(opacity=0);
-		-khtml-opacity: 0;
-		-moz-opacity: 0;
-	}
+	float: left;
+	display: inline-block;
+	border:2px solid #d8d8d8;            
+	background:url(../images/dropdown.png) no-repeat right center;
+	cursor: pointer;
+	border-radius:4px;
+}
+.select-wrapper, .select-wrapper select{
+	width: 100%;
+	height:50px;
+	line-height:35px;
+	color:#000;
+	font-size:15px;
+	margin-top:22px;
+}
+.select-wrapper:hover{
+	background:url(../images/dropdown-hover.png) no-repeat right center;
+	border-color: #239fdb;
+}
+.select-wrapper .holder{
+	display: block;
+	margin: 0 35px 0 5px;
+	white-space: nowrap;            
+	overflow: hidden;
+	cursor: pointer;
+	position: relative;
+	z-index:1;
+}
+.select-wrapper select{
+	margin: 0;
+	position: absolute;
+	z-index: 2;            
+	cursor: pointer;
+	outline: none;
+	opacity: 0;
+	/* CSS hacks for older browsers */
+	_noFocusLine: expression(this.hideFocus=true); 
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	-khtml-opacity: 0;
+	-moz-opacity: 0;
+}
 .custom-select{width:72%!important;}
 .save-search{background:#bd2f4f; height:53px; border:1px solid #89122d; border-radius:5px; color:#fff; font-size:17px; text-transform:uppercase; font-weight:600;  margin:20px 0 0 0; width:210px;}
 .save-search:hover{background:#89122d;}
 
+.save-search2{background:#ccc; height:53px; border:none; border-radius:5px; color:#fff; font-size:17px; text-transform:uppercase; font-weight:600;  margin:20px 0 0 0; width:210px; float:right;}
+.save-search2:hover{background:#e9811b;}
+
 .grid-info{margin:0px; padding:0px;}
 .grid-infoBox{background:#fff; padding:25px 0px 0px 25px;}
+.gridView .grid-infoBox {
+    float: left;
+    margin: 0 25px 11px 0;
+    max-height: 183px;
+    overflow: hidden;
+    width: 30%;
+}
+.gridView .grid-infoBox  .row>div{ width : 100%;}
+.gridView .grid-infoBox +.grid-infoBox{margin-top:0px;}
 .grid-infoBox +.grid-infoBox{margin-top:22px;}
 .grad-pic{margin:0px; position:relative;}
 .light-pic{}
@@ -402,7 +477,7 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
 .order-info span{display:block; color:#d09821; font-size:17px; font-family: 'Philosopher', sans-serif; font-style:italic; line-height:10px;}
 .details-view{float:right;  height:48px; margin-right:-1px;}
 .details-view h2{background:url(../images/left-bg.png) left top no-repeat;}
-.details-view h2 a{background:#f4d39f url(../images/search-red.png) 0px 10px no-repeat; padding-left:38px; display:inline-block; *display:inline; *zoom:1; color:#a11c3a;  font-size:16px; font-weight:500; line-height:48px; margin-left:28px;}
+.details-view h2 a{background:#f4d39f; padding-left:38px; display:inline-block; *display:inline; *zoom:1; color:#a11c3a;  font-size:16px; font-weight:500; line-height:48px; margin-left:28px;}
 .details-view h2 a span{background:url(../images/arrow-red.png) right center no-repeat; padding-right:15px;}
 .details-view h2 .loder-link a{margin-left:0px; background:#f4d39f url(../images/border-3.png) 10px 0px no-repeat; padding-right:15px;}
 

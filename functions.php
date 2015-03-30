@@ -538,6 +538,7 @@ add_filter( 'excerpt_more', 'custom_excerpt_more' );
 
 add_shortcode('wp_trim_title', 'trim_shortcode');
 function trim_shortcode($atts, $content = '') {
+  	
   $content = wpv_do_shortcode($content);
   if (strlen($content) > 38) {
     $content = substr($content, 0, 38) . '...';
@@ -547,16 +548,44 @@ function trim_shortcode($atts, $content = '') {
 
 //To show taxonomy if there are multiple
 add_shortcode('trim_taxonomy', 'trim_taxonomy_content');
-
+add_shortcode('taxonomy_image','trim_taxonomy_image');
 function trim_taxonomy_content($atts, $content = '') {
   $content = wpv_do_shortcode($content);
-  
   $content = explode(',',$content);
-  
+
   if (strlen($content) > 45) {
   //  $content = substr($content, 0, 45) . '...';
   }
-  return $content[0];
+ $tax_slug =  $content[0];
+ $query = get_term_by('slug',$tax_slug,'resource-type');
+ $tid = $query->term_id;
+ $tname = $query->name;
+ $images = get_option( 'cfi_featured_images' );
+ $attachment = wp_get_attachment_image_src( $images[$tid], array(32,32) );
+ $str ="";
+ if( $attachment !== FALSE )
+       $str = '<img class="tax-image" src="'.$attachment[0].'" >';
+ $str .= $tname;
+ return $str ;
+}
+
+function trim_taxonomy_image($atts, $content = '') {
+  $content = wpv_do_shortcode($content);
+  $content = explode(',',$content);
+
+  if (strlen($content) > 45) {
+  //  $content = substr($content, 0, 45) . '...';
+  }
+ $tax_slug =  $content[0];
+ $query = get_term_by('slug',$tax_slug,'resource-type');
+ $tid = $query->term_id;
+ $tname = $query->name;
+ $images = get_option( 'cfi_featured_images' );
+ $attachment = wp_get_attachment_image_src( $images[$tid], array(64,64) );
+ $str ="";
+ if( $attachment !== FALSE )
+       $str = '<div class="alternate_image"><img class="tax-preview-image" src="'.$attachment[0].'" ></div>';
+ return $str ;
 }
 
  
@@ -670,3 +699,81 @@ function qt_custom_breadcrumbs() {
 }
 
 wp_enqueue_script( 'tinysort-js', get_template_directory_uri() . '/js/tinysort.js', array(), '1.0.0' );
+
+add_shortcode('wpv-post-sorting', 'wpv_post_sorting_shortcode');
+function wpv_post_sorting_shortcode($atts)
+{
+    extract( shortcode_atts( array(
+         'sort' => '',
+         'dir' => '',
+         'numeric' => '',
+    ), $atts ) );
+    if(isset($_REQUEST['wpv_column_sort_dir'])&&$_REQUEST['wpv_column_sort_dir']=='DESC')
+    {
+        $dir = 'ASC';
+    }
+  
+    //Added line to enable numeric sortings
+    if($numeric == 'yes'){
+         $sort = (int)$sort;
+    }
+  
+    $args = array(
+        'wpv_column_sort_id' => $sort,
+        'wpv_column_sort_dir' => $dir,
+    );
+    return add_query_arg($args);
+}
+   
+add_filter('wpv_filter_query', 'sort_by_field_func', 10, 2);
+function sort_by_field_func($query, $settings) {
+
+        if(isset($_REQUEST['wpv_column_sort_id']) && isset($_REQUEST['wpv_column_sort_dir']))
+        {
+            $query['meta_key'] = $_REQUEST['wpv_column_sort_id'];
+            $query['orderby'] = 'meta_value_num';
+            $query['order'] = $_REQUEST['wpv_column_sort_dir'];
+        }
+    return $query;
+}
+
+// adding featured image to custom taxonomy 
+add_action( 'resource-type_edit_form', 'type_resource_edit_form');
+add_action( 'edited_resource-type', 'edited_resource_type' );
+function type_resource_edit_form()
+{
+	$tag_ID = $_GET['tag_ID'];
+	$images = get_option( 'cfi_featured_images' );
+	if( $images === FALSE ) $images = array();
+	$image = isset( $images[$tag_ID] ) ? $images[$tag_ID] : '';
+?>
+	<table class="form-table">
+		<tr class="form-field">
+			<th valign="top" scope="row">
+				<label>Featured Image</label>
+			</th>
+			<td>
+				<input id="cfi-featured-image" type="hidden" name="cfi_featured_image" readonly="readonly" value="<?php echo $image; ?>" />
+				<input id="cfi-remove-image" class="button" type="button" value="Remove image" />
+				<input id="cfi-change-image" class="button" type="button" value="Change image" />
+				<div id="cfi-thumbnail"><?php if( !empty( $image ) ) echo wp_get_attachment_image( $image ); ?></div>
+				<p class="description">Set a featured image for all the post of this category without a featured image.</p>
+			</td>
+		</tr>
+	</table>
+<?php
+}
+
+function edited_resource_type( $term_id )
+{
+	if( isset( $_POST['cfi_featured_image'] ) )
+	{
+		$images = get_option( 'cfi_featured_images' );
+		if( $images === FALSE ) $images = array();
+		//$url = trim( $_POST['cfi_featured_image'] );	// URL alternative
+		//$images[$term_id] = !empty( $url ) ? esc_url( $url ) : NULL;
+		$img_id = trim( $_POST['cfi_featured_image'] );
+		$images[$term_id] = !empty( $img_id ) ? $img_id : NULL;
+		update_option( 'cfi_featured_images', $images );
+	}
+} 
