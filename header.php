@@ -82,6 +82,7 @@
                   </ul> -->
                 </div>
                 <div class="mealing-part">
+				<?php //echo do_shortcode('[gravityform id=1 ajax=true]'); ?>
                   <input type="text" placeholder="Join Our Mailing list"/>
                   <button class="sub-butt">Submit</button>
                 </div>
@@ -144,7 +145,7 @@
   <!--=====Header End===!-->
   
   
-  <?php if(!is_page('home')): ?>
+ <?php if ( !is_front_page() ): ?>
 	<div class="new-menu">
 		<div class="container">
 		  <div class="row">
@@ -155,4 +156,5 @@
 		  </div>
 		</div>
   </div>
-		<?php endif; ?>
+<?php endif; ?>
+		

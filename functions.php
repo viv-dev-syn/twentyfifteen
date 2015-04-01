@@ -777,3 +777,4 @@ function edited_resource_type( $term_id )
 		update_option( 'cfi_featured_images', $images );
 	}
 } 
+//    
