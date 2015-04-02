@@ -29,10 +29,17 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
 .mobile-menu{display:none;}
 
 
-.mealing-part{float:left; width:245px; margin-top:10px;}
-.mealing-part input{width:165px !important; height:32px; border:none; border-radius:none; background:#434343  !important; padding:0 10px !important; box-sizing:border-box; font-size:13px; font-family: 'Open Sans', sans-serif; color:#c2bcbc!important;}
+.mealing-part{float:left; width:245px; margin-top:-3px;}
+.mealing-part input{width:165px !important; height:32px; border:none; border-radius:none; background:#434343  !important; padding:0 10px !important; box-sizing:border-box; font-size:13px!important; font-family: 'Open Sans', sans-serif; color:#c2bcbc!important;}
 *::-moz-placeholder{color:#c2bcbc!important;}
 ::-webkit-input-placeholder{color:#c2bcbc!important;}
+.mealing-part .gform_wrapper ,.gform_wrapper li.hidden_label input ,.gform_wrapper .gform_footer{margin:0px!important;}
+
+.mealing-part .gform_footer.top_label{display: inline-block; vertical-align: middle; width:70px;}
+.mealing-part .gform_body{display:inline-block; vertical-align:middle;}
+.mealing-part .gform_button.button{font-size: 14px !important; font-weight: normal; margin:0px 0 0 -5px; vertical-align:top; background:#b37310 !important;}
+.mealing-part .gform_button.button:hover{color:#fff!important;}
+
 
 .sub-butt{border:none; border-radius:none; background:#b37310 !important; padding:0 10px; height:32px; margin-left:-4px; color:#c2bcbc; font-weight: normal;font-size: 14px !important;}
 .sub-butt:hover{color:#fff; background:#db8e16;}
@@ -171,8 +178,9 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
   margin:0px 5px 0 0;
 }
 
-.alternate_image ,.featured_image{
-    padding: 29px 0px;
+.alternate_image{
+   
+   height:150px;
 }
 
 ._sort-terms{
@@ -202,6 +210,7 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
     margin: 0;
 	width : 150px; 
 }
+input:focus, select:focus{outline:0px!important;}
 
 /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
@@ -255,8 +264,9 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
 }
 .js-wpv-filter-trigger-delayed{background:#ebb541 url(../images/new-serch.png) right 0px no-repeat!important; border-radius:4px; border:none!important; color:#fff!important; font-style:italic; font-family: 'Open Sans', sans-serif; height:40px; padding:0 60px 0 12px!important; width:100%;}
 
-.alternate_image img,.featured_image img{ height : 90px; width : 90px!important;}
-
+.alternate_image img{ height : 90px; width :100%!important;}
+.featured_image img{max-width : 100%; max-height : 185px;}
+ 
 /* END CODE BY 1705  */
 .resu-box p{color:#3b3b3b; font-size:14px; font-weight:300; line-height:22px; text-align:center; margin:0 10px;  max-height: 108px;
   overflow: hidden;}
@@ -301,6 +311,16 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
 .footer-se{ border-top:1px solid #474747; margin-top:17px;}
 .footer-se p{color:#898989; font-size:11px; font-weight:500; margin-top:40px;}
 .search-section{margin:25px 0 0 50px;}
+
+.search-section .gform_footer.top_label{display: inline-block; vertical-align: middle; width:70px;}
+.search-section .gform_body{display:inline-block; vertical-align:middle;}
+.search-section .gform_button.button{font-size: 14px !important;  color:#fff!important; text-transform:uppercase; margin:0px 0 0 -5px; vertical-align:top; background:#ed9813 !important;}
+.search-section .gform_button.button:hover{color:#a11c3a!important;}
+
+
+
+
+
 .search-section input{background:#434343  !important; color:#919191 !important; font-size:13px; font-weight:400; font-family: 'Open Sans', sans-serif; height:32px; border:none; border-radius:0px; width:225px !important; padding:0 15px !important; box-sizing: border-box;}
 .search-section button{background:#ed9813; color:#fff; height:32px; border:none; border-radius:0px; font-size:14px  !important; font-weight: normal;   padding:0 5px; margin-left:-3px; text-transform:uppercase;}
 .search-section button:hover{background:#feb749; color:#a11c3a;}
@@ -333,8 +353,13 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
 .grid-view{border-bottom:1px solid #ffc956; padding:25px;}
 .grid-view ul li{float:left; list-style:none; color:#313131; font-size:16px;}
 .grid-view ul li:first-child{font-weight:600; margin-right:30px;}
-.grid-view ul li+li{color:#a11c3a; cursor:pointer; background:url(../images/list.png) left center no-repeat; padding-left:25px;}
-.grid-view ul li:last-child{background:url(../images/grid.png) left center no-repeat; margin-left:10px;}
+.grid-view ul li+li:hover{color:#bd2f4f; cursor:pointer;}
+[class$=-sprite]{background:url(../images/sprit-icon.png) 0px 0px no-repeat; display:inline-block; vertical-align:middle; width:20px; height:20px;}
+.list1-sprite{background-position:0px 0px; margin-right:5px;}
+.grid1-sprite{background-position:-23px 0px; margin:0 5px;}
+.grid-view ul li+li:hover .list1-sprite{background-position:0px -22px;}
+.grid-view ul li+li:hover .grid1-sprite{background-position:-23px -22px;}
+
 
 .order-by{border-bottom:1px solid #ffc956; padding:25px;}
 .order-by h2{color:#313131; float:left; font-size:16px; font-weight:600; margin-top:5px;}
@@ -353,7 +378,7 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
 .accodian-heading:hover{color:#e9811b; cursor:pointer;}
 .changeImg{background:url(../images/ching-pic2.png) right center no-repeat;}
 .accodian-matter{margin-top:15px; display:none;  max-height: 300px; overflow-x: hidden;}
-.selectit{
+.selectit,.wpcf-form-item-checkbox{
 	width: 100%;
 	padding-left : 30px;
 	height: 28px;
@@ -367,10 +392,11 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
 .selectit:hover{
 	background:url(../images/checkbox-hover.png) scroll 0 center no-repeat;
 }
-.selectit.selected{
+.selectit.selected,.wpcf-form-item-checkbox.selected
+{
 	background:url(../images/checkbox-selected.png) scroll 0 center no-repeat;
 }
-.selectit input[type="checkbox"]{
+.selectit input[type="checkbox"],.wpcf-form-item-checkbox input[type="checkbox"]{
 	margin: 0;
 	position: absolute;
 	z-index: 2;            
@@ -462,20 +488,23 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
 .save-search2:hover{background:#e9811b;}
 
 .grid-info{margin:0px; padding:0px;}
-.grid-infoBox{background:#fff; padding:25px 0px 0px 25px;}
+.grid-infoBox{background:#fff; padding:25px 0px 0px 25px; height:225px; position:relative; overflow:hidden;}
 .gridView .grid-infoBox {
     float: left;
-    margin: 0 25px 11px 0;
-    max-height: 183px;
+    margin: 0 10px 10px 0;
+    height:450px;
     overflow: hidden;
-    width: 30%;
+    width: 32%;
+	position:relative;
+	padding:20px;
 }
-.gridView .grid-infoBox  .row>div{ width : 100%;}
+.details-view > h2{position:absolute; right:0px;}
+.grid-articl > p{margin-right:10px!important; text-align:inherit!important;}
+.gridView .grid-infoBox  .row>div{ width:100%;}
 .gridView .grid-infoBox +.grid-infoBox{margin-top:0px;}
 .grid-infoBox +.grid-infoBox{margin-top:22px;}
 .grad-pic{margin:0px; position:relative;}
-.light-pic{ text-align : center; border:2px solid #e8e8e8;}
-.light-pic img{width : 130px}
+.light-pic{text-align:center; border:2px solid #e8e8e8;}
 .light-pic2{border:none;}
 .grad-pic i{position:absolute; left:0px; top:0px;}
 .center-icon{position:absolute; left:35%; top:40px;}
@@ -484,12 +513,14 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
 .grid-articl p{color:#3b3b3b; font-size:14px; font-weight:300; line-height:20px; text-align:justify; margin:15px 70px 25px 0;}
 .order-info{float:left; color:#606979; font-size:15px; font-weight:300;}
 .order-info span{display:block; color:#d09821; font-size:17px; font-family: 'Philosopher', sans-serif; font-style:italic; line-height:10px;}
-.details-view{float:right;  height:48px; margin-right:-1px;}
+.details-view{float:right;  height:48px; position:absolute; right:0px; bottom:0px;}
 .details-view h2{background:url(../images/left-bg.png) left top no-repeat;}
 .details-view h2 a{background:#f4d39f; padding-left:38px; display:inline-block; *display:inline; *zoom:1; color:#a11c3a;  font-size:16px; font-weight:500; line-height:48px; margin-left:28px; max-width:200px; white-space: nowrap; overflow: hidden; text-overflow:ellipsis;}
 .details-view span img{margin-right:5px;}
 .details-view h2 a span{background:url(../images/arrow-red.png) right center no-repeat; padding-right:15px;}
 .details-view h2 .loder-link a{margin-left:0px; padding-right:15px;}
+.wpv_pagi{clear:both;}
+.wpv_pagi .js-wpv-page-selector{margin:20px 0 0 0; border:1px solid #ccc;}
 
 .details-view >h2>a{
 	padding : 0px 10px 0px 0px;
@@ -555,8 +586,8 @@ body{background:#ececec; font-family: 'Open Sans', sans-serif  !important; /*fon
 .side-menu ul li > a{color:#373737; display:block; padding:20px 22px;}
 .side-menu ul li:hover a{color:#e9811b; text-decoration:none;}
 
-.sub-menu{background:url(../images/toggle2.png) right 12px no-repeat; margin-right:20px;}
-.sub-menu2{background:url(../images/toggle.png) right 12px no-repeat; margin-right:20px;}
+.dcjq-accordion .current-menu-ancesto .dcjq-parent{background:url(../images/toggle2.png) right 12px no-repeat; margin-right:20px;}
+.dcjq-accordion .current-menu-ancesto .active{background:url(../images/toggle.png) right 12px no-repeat; margin-right:20px;}
 .toggle-menu{display:none;}
 .toggle-menu ul li{border-top:none;}
 .toggle-menu ul li a{color:#373737!important; padding:6px 22px;}

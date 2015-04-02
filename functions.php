@@ -560,11 +560,11 @@ function trim_taxonomy_content($atts, $content = '') {
  $query = get_term_by('slug',$tax_slug,'resource-type');
  $tid = $query->term_id;
  $tname = $query->name;
- $images = get_option( 'cfi_featured_images' );
+ $images = get_option( 'cfi_alternate_images' );
  $attachment = wp_get_attachment_image_src( $images[$tid], array(32,32) );
  $str ="";
  if( $attachment !== FALSE )
-       $str = '<img class="tax-image" src="'.$attachment[0].'" >';
+       $str = '<img  width=32 height=32 class="tax-image" src="'.$attachment[0].'" >';
  $str .= $tname;
  return $str ;
 }
@@ -581,10 +581,10 @@ function trim_taxonomy_image($atts, $content = '') {
  $tid = $query->term_id;
  $tname = $query->name;
  $images = get_option( 'cfi_featured_images' );
- $attachment = wp_get_attachment_image_src( $images[$tid], array(64,64) );
+ $attachment = wp_get_attachment_image_src( $images[$tid],'large' );
  $str ="";
  if( $attachment !== FALSE )
-       $str = '<div class="alternate_image"><img class="tax-preview-image" src="'.$attachment[0].'" ></div>';
+       $str = '<div class="alternate_image" style="background:url('.$attachment[0].') no-repeat scroll center;">&nbsp;</div>';
  return $str ;
 }
 
@@ -741,26 +741,90 @@ function sort_by_field_func($query, $settings) {
 add_action( 'resource-type_edit_form', 'type_resource_edit_form');
 add_action( 'edited_resource-type', 'edited_resource_type' );
 function type_resource_edit_form()
-{
+{	
+	wp_enqueue_media();
 	$tag_ID = $_GET['tag_ID'];
 	$images = get_option( 'cfi_featured_images' );
 	if( $images === FALSE ) $images = array();
 	$image = isset( $images[$tag_ID] ) ? $images[$tag_ID] : '';
+	
+	$images1 = get_option( 'cfi_alternate_images' );
+	if( $images1 === FALSE ) $images1 = array();
+	$image1 = isset( $images1[$tag_ID] ) ? $images1[$tag_ID] : '';
+	
 ?>
+
+<script type='text/javascript'>
+jQuery(document).ready( function() {
+	var cfi_media_upload;
+
+	jQuery('.cfi-change-image').click(function(e) {
+		e.preventDefault();
+		var using = jQuery(this).attr('using');
+	// If the uploader object has already been created, reopen the dialog
+		if( cfi_media_upload ) {
+			cfi_media_upload.open();
+			return;
+		}
+
+	// Extend the wp.media object
+		cfi_media_upload = wp.media.frames.file_frame = wp.media({
+			title: 'Choose an image',
+			button: { text: 'Choose image' },
+			multiple: false
+		});
+ 
+	//When a file is selected, grab the URL and set it as the text field's value
+		cfi_media_upload.on( 'select', function() {
+			attachment = cfi_media_upload.state().get( 'selection' ).first().toJSON();
+			jQuery('.feature-image[using='+using+']').val( attachment.id );
+			jQuery('#cfi-thumbnail[using='+using+']').empty();
+			jQuery('#cfi-thumbnail[using='+using+']').append( '<img src="' + attachment.url + '" class="attachment-thumbnail cfi-preview" />' );
+		});
+
+	//Open the uploader dialog
+		cfi_media_upload.open();
+	});
+
+	jQuery('.cfi-remove-image').click(function(e) {
+		var using = jQuery(this).attr('using');
+		jQuery('.feature-image[using='+using+']').val('');
+		jQuery('.cfi-thumbnail[using='+using+']').empty();
+	});
+}); </script>
+
 	<table class="form-table">
+			
 		<tr class="form-field">
 			<th valign="top" scope="row">
-				<label>Featured Image</label>
+				<label>Default Featured Image</label>
 			</th>
 			<td>
-				<input id="cfi-featured-image" type="hidden" name="cfi_featured_image" readonly="readonly" value="<?php echo $image; ?>" />
-				<input id="cfi-remove-image" class="button" type="button" value="Remove image" />
-				<input id="cfi-change-image" class="button" type="button" value="Change image" />
-				<div id="cfi-thumbnail"><?php if( !empty( $image ) ) echo wp_get_attachment_image( $image ); ?></div>
+				<input id="cfi-featured-image" class="feature-image" using="featured" type="hidden" name="cfi_featured_image" readonly="readonly" value="<?php echo $image; ?>" />
+				<input id="cfi-remove-image" using="featured" class="button cfi-remove-image" type="button" value="Remove image" />
+				<input id="cfi-change-image" using="featured" class="button cfi-change-image" type="button" value="Change image" />
+				<div class="cfi-thumbnail" using="featured"><?php if( !empty( $image ) ) echo wp_get_attachment_image( $image ); ?></div>
 				<p class="description">Set a featured image for all the post of this category without a featured image.</p>
 			</td>
 		</tr>
+		
+		<tr class="form-field">
+			<th valign="top" scope="row">
+		<label>Bottom Icon</label>
+			</th>
+			<td>
+				<input id="cfi-alternate-image" class="feature-image" using="bottom" type="hidden" name="cfi_alternate_image" readonly="readonly" value="<?php echo $image1; ?>" />
+				<input id="cfi-remove-image" using="bottom" class="button cfi-remove-image" type="button" value="Remove image" />
+				<input id="cfi-change-image" using="bottom" class="button cfi-change-image" type="button" value="Change image" />
+				<div id="cfi-thumbnail" class="cfi-thumbnail" using="bottom"><?php if( !empty( $image1 ) ) echo wp_get_attachment_image( $image1 ); ?></div>
+				<p class="description">Set a bottom icon for all the grid view posts.</p>
+			</td>
+		</tr>
+	
+
+		
 	</table>
+	
 <?php
 }
 
@@ -776,5 +840,114 @@ function edited_resource_type( $term_id )
 		$images[$term_id] = !empty( $img_id ) ? $img_id : NULL;
 		update_option( 'cfi_featured_images', $images );
 	}
+	
+	if( isset( $_POST['cfi_alternate_image'] ) )
+	{
+		$images = get_option( 'cfi_alternate_images' );
+		if( $images === FALSE ) $images = array();
+		$img_id = trim( $_POST['cfi_alternate_image'] );
+		$images[$term_id] = !empty( $img_id ) ? $img_id : NULL;
+		update_option( 'cfi_alternate_images', $images );
+	}
 } 
-//    
+
+// For showing images in backend resource type.
+
+
+
+
+
+
+
+// Inner page menu for c2c pages. 
+
+add_shortcode('cc_menu','cc_page_menu');
+function cc_page_menu(){
+	
+  $menu_name = 'cc-menu';
+  $locations = get_nav_menu_locations();
+  
+  $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
+  //echo $menu->term_id;
+  
+  $menuitems = wp_get_nav_menu_items( '430', array( 'order' => 'DESC' ) );
+	/* echo "<pre>";
+	print_r($menuitems);
+	echo "</pre>"; */
+  $str = '';
+  $str .='<div class="side-menu">';
+  $str .= '<ul>';
+  $count = 0;
+  $submenu = false;
+  if(isset($menuitems) && !empty($menuitems)){
+    foreach( $menuitems as $item ):
+        $link = $item->url;
+        $title = $item->title;
+        // item does not have a parent so menu_item_parent equals 0 (false)
+        if ( !$item->menu_item_parent ):
+        // save this id for later comparison with sub-menu items
+        $parent_id = $item->ID;
+ 		$str .= '<li>';
+		$str .='<a href="'.$link.'" class="title">'.$title.'</a>';
+		endif;
+		
+		if ( $parent_id == $item->menu_item_parent ): 
+              if ( !$submenu ): $submenu = true; 
+            $str .= '<div class="toggle-menu"><ul>';
+             endif;
+ 
+              $str .='<li class="item">';
+              $str .='<a href="'.$link.'" class="title">'.$title.'</a>';
+              $str .='</li>';
+              if ( $menuitems[ $count + 1 ]->menu_item_parent != $parent_id && $submenu ): 
+            $str .= '</ul></div>';
+            $submenu = false; endif;
+ 
+        endif;
+ 
+		if ( $menuitems[$count + 1]->menu_item_parent != $parent_id ):
+    $str .= '</li>';
+    $submenu = false; 
+	endif;
+  $count++;
+  endforeach;
+  }else{
+	$str .='Not found';
+	}
+$str .='</ul>';
+$str .='</div>';
+echo $str;
+}
+ add_action('wp_footer','accordion_menu'); 
+// add_action( 'wp_enqueue_scripts', 'accordion_menu' );
+function accordion_menu(){
+	 echo "<script type='text/javascript'>jQuery(document).ready(function(){ 
+	jQuery('.menu-cc-menu-container').addClass('side-menu');
+
+	/* jQuery('.toggle-menu').parent('li a').addClass('sub-menu');
+	jQuery('.toggle-menu').parent('li').click(function(e){
+	
+		jQuery('.toggle-menu').slideToggle();
+		jQuery('.sub-menu').toggleClass('sub-menu2');
+		e.preventDefault();
+	}); */
+ });</script>";
+} 
+
+add_action('wp_head','header_banner'); 
+
+function header_banner()
+{
+global $post;
+
+$banner_src = get_post_meta($post->ID,'wpcf-_custom_header_image',true);
+
+
+if($banner_src){
+echo '<style>
+.custom-header-banner{
+background : url("'.$banner_src.'") no-repeat scroll center top / cover  rgba(0, 0, 0, 0) !important;
+}
+</style>';
+}
+}
