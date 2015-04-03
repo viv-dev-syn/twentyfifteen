@@ -585,6 +585,8 @@ function trim_taxonomy_image($atts, $content = '') {
  $str ="";
  if( $attachment !== FALSE )
        $str = '<div class="alternate_image" style="background:url('.$attachment[0].') no-repeat scroll center;">&nbsp;</div>';
+else
+	$str = '<div class="alternate_image _no_image" >&nbsp;</div>';
  return $str ;
 }
 
@@ -756,40 +758,77 @@ function type_resource_edit_form()
 
 <script type='text/javascript'>
 jQuery(document).ready( function() {
-	var cfi_media_upload;
+	
 
-	jQuery('.cfi-change-image').click(function(e) {
-		e.preventDefault();
-		var using = jQuery(this).attr('using');
-	// If the uploader object has already been created, reopen the dialog
-		if( cfi_media_upload ) {
+	jQuery('.cfi-change-image').live('click',function(e){
+			var cfi_media_upload;
+			e.preventDefault();
+			var using ="";
+			var use = jQuery(this).attr('using');
+			
+		// If the uploader object has already been created, reopen the dialog
+			if( cfi_media_upload ) {
+				cfi_media_upload.open();
+				return;
+			}
+		// Extend the wp.media object
+			cfi_media_upload = wp.media.frames.file_frame = wp.media({
+				title: 'Choose an image',
+				button: { text: 'Choose image' },
+				multiple: false
+			});
+			
+
+		//When a file is selected, grab the URL and set it as the text field's value
+			cfi_media_upload.on( 'select', function() {
+				attachment = cfi_media_upload.state().get( 'selection' ).first().toJSON();
+				jQuery('.feature-image').val( attachment.id );
+				jQuery('.cfi-thumbnail').empty();
+				jQuery('.cfi-thumbnail').append( '<img src="' + attachment.url + '" class="attachment-thumbnail cfi-preview" />' );
+			});
+
+		//Open the uploader dialog
 			cfi_media_upload.open();
+	});
+	
+	jQuery('.cfi-alternate-image').live('click',function(e){
+		var cfi_media_upload1;
+		e.preventDefault();
+		
+	// If the uploader object has already been created, reopen the dialog
+		if( cfi_media_upload1 ) {
+			cfi_media_upload1.open();
 			return;
 		}
-
+		
 	// Extend the wp.media object
-		cfi_media_upload = wp.media.frames.file_frame = wp.media({
+		cfi_media_upload1 = wp.media.frames.file_frame = wp.media({
 			title: 'Choose an image',
 			button: { text: 'Choose image' },
 			multiple: false
 		});
- 
-	//When a file is selected, grab the URL and set it as the text field's value
-		cfi_media_upload.on( 'select', function() {
-			attachment = cfi_media_upload.state().get( 'selection' ).first().toJSON();
-			jQuery('.feature-image[using='+using+']').val( attachment.id );
-			jQuery('#cfi-thumbnail[using='+using+']').empty();
-			jQuery('#cfi-thumbnail[using='+using+']').append( '<img src="' + attachment.url + '" class="attachment-thumbnail cfi-preview" />' );
+		
+		//When a file is selected, grab the URL and set it as the text field's value
+		cfi_media_upload1.on( 'select', function() {
+			attachment1 = cfi_media_upload1.state().get( 'selection' ).first().toJSON();
+			jQuery('.alternate-image').val( attachment1.id );
+			jQuery('.cfi-alternate').empty();
+			jQuery('.cfi-alternate').append( '<img src="' + attachment1.url + '" class="attachment-thumbnail cfi-preview" />' );
 		});
-
 	//Open the uploader dialog
-		cfi_media_upload.open();
+		cfi_media_upload1.open();
 	});
+	
 
 	jQuery('.cfi-remove-image').click(function(e) {
 		var using = jQuery(this).attr('using');
-		jQuery('.feature-image[using='+using+']').val('');
-		jQuery('.cfi-thumbnail[using='+using+']').empty();
+		jQuery('.feature-image').val('');
+		jQuery('.cfi-thumbnail').empty();
+	});
+	jQuery('.cfi-remove-alternate-image').click(function(e) {
+		var using = jQuery(this).attr('using');
+		jQuery('.alternate-image').val('');
+		jQuery('.cfi-alternate').empty();
 	});
 }); </script>
 
@@ -813,10 +852,10 @@ jQuery(document).ready( function() {
 		<label>Bottom Icon</label>
 			</th>
 			<td>
-				<input id="cfi-alternate-image" class="feature-image" using="bottom" type="hidden" name="cfi_alternate_image" readonly="readonly" value="<?php echo $image1; ?>" />
-				<input id="cfi-remove-image" using="bottom" class="button cfi-remove-image" type="button" value="Remove image" />
-				<input id="cfi-change-image" using="bottom" class="button cfi-change-image" type="button" value="Change image" />
-				<div id="cfi-thumbnail" class="cfi-thumbnail" using="bottom"><?php if( !empty( $image1 ) ) echo wp_get_attachment_image( $image1 ); ?></div>
+				<input id="cfi-alternate-image" class="alternate-image" using="bottom" type="hidden" name="cfi_alternate_image" readonly="readonly" value="<?php echo $image1; ?>" />
+				<input id="cfi-remove-image" using="bottom" class="button cfi-remove-alternate-image" type="button" value="Remove image" />
+				<input id="cfi-change-image" using="bottom" class="button cfi-alternate-image" type="button" value="Change image" />
+				<div id="cfi-thumbnail" class="cfi-alternate"><?php if( !empty( $image1 ) ) echo wp_get_attachment_image( $image1 ); ?></div>
 				<p class="description">Set a bottom icon for all the grid view posts.</p>
 			</td>
 		</tr>
@@ -946,7 +985,7 @@ $banner_src = get_post_meta($post->ID,'wpcf-_custom_header_image',true);
 if($banner_src){
 echo '<style>
 .custom-header-banner{
-background : url("'.$banner_src.'") no-repeat scroll center top / cover  rgba(0, 0, 0, 0) !important;
+background: url("'.$banner_src.'") no-repeat scroll center top / cover hsla(0, 0%, 0%, 0) !important;
 }
 </style>';
 }
