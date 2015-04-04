@@ -1,12 +1,13 @@
 @media screen and (max-width:1199px){
-.get-part{width:99px; margin-right:-24px;}
-.get-part a{font-size:12px;}
+.get-part{width:125px; margin-right:-24px;}
+.get-part a{font-size:14px;}
 .mealing-part{width:200px;}
-.mealing-part input{width:135px !important}
+.mealing-part input{width:135px;}
 .sub-butt{padding:0 5px;}
-.sec-list{margin:25px 0 0 35px;}
+.sec-list{margin:10px 0 0 35px;}
 .sec-list ul li{font-size:16px;}
-.search-part{margin:10px 0 0 20px;}
+.search-part{margin:10px 13px 0 20px;}
+.search-submit{width:225px;}
 .banner-info{top:170px;}
 .title-box{margin-right:-105px;}
 .banner-h1{font-size:33px; line-height:38px;}
@@ -23,9 +24,9 @@
 .post-info p{padding:5px 10px 0 10px; font-size:14px; line-height:20px;}
 .icon-hover{margin:15px 0 0 10px;}
 .event-product{margin-bottom:25px;}
-.event-box{margin-bottom:30px;}
+.event-box{margin-bottom:30px!important;}
 .filter-list{margin-left:-82px;}
-.resu-box h3{font-size:15px; padding:20px 0 15px 0;}
+.resu-box h3{font-size:15px; padding:20px 1px 15px 0;}
 .spacial-heading{line-height:19px;}
 .footer-logo button{margin-top:10px;}
 .footer-h{font-size:16px; font-size:15px;}
@@ -35,15 +36,47 @@
 .email-d ,.email-d2 ,.email-d3{font-size:12px;}
 .media-icon li + li{margin-left:3px;}
 .search-section{margin-left:0px;}
-.search-section input{width:208px !important;}
+.search-section input{width:208px;}
 .footer-bg{padding:35px 0;}
 .rsesources-sec .col-lg-3.col-md-3.col-sm-6{padding:0px 8px; width:33.3%;}
-.icon-img{padding:19% 0;}
+.search-heading{padding:0 65px; font-size:15px;}
+.menu{width:350px; margin:0px;}
+.mealing-part{width:245px;}
+.sec-list ul li a {background:url(../images/border-1.png) no-repeat scroll 0 6px hsla(0, 0%, 0%, 0);}
+.product-box button .strong{font-size:14px;}
+li > ul, li > ol, blockquote > ul, blockquote > ol{margin-left:0px!important;}
 
+/*=========================Article pages css============================*/
+.program-boxInfo h1{margin:0px 20px 10px 0;}
+.program-box-1 ,.program-boxInfo{float:none; width:100%;}
+.program-box-1 > img{width:100%;}
+.program-boxInfo{margin:10px 0 0 0;}
+
+/*======================Catalayze campus engagement Pages css=====================================*/
+.side-menu h1{padding:0px 0 0 15px; font-size:11px;}
+.side-menu ul li{font-size:13px;}
+.tab-list li{padding:25px 45.8px;}
+.year-heading3{margin-left:30px;}
+.center-icon img{width:59%;}
+
+/*======================Resources Pages css=====================================*/
+.grid-view ,.order-by ,.grid-filter{padding:10px;}
+.grid-view ul li ,.order-by h2{font-size:13px;}
+.save-search ,.save-search2{width:190px;}
+.new-box h1{font-size:18px;}
+.mail-box{padding:0 15px; width:150px;}
+.new-box p{padding:0 10px;}
+/*======================Whate we do Pages css=====================================*/
+.contact-box button{font-size:14px; padding:0 25px;}
+.right-title{font-size:15px!important; line-height:25px!important;}
+.atricle-box h5{margin-left:0px; font-size:12px;}
+.sub-menu{margin-right:10px;}
+.search-section input{width:208px!important;} 
+.gridView .grid-infoBox{width : 	31%;}
 
 }
 
-@media screen and (max-width:980px){
+@media screen and (max-width:992px){
 .menu-part{background:rgba(49,59,67,0.9); height:63px;}
 .flex-direction-nav .flex-next ,.flex-direction-nav .flex-prev{top:-200px;}
 .banner-info{top:117px;}
@@ -53,25 +86,25 @@
 .mobile-menu{display:block; list-style:none; float:right;}
 .mobile-menu li{float:left; line-height:60px; cursor:pointer; border-right:1px solid #131a21; padding:0 20px;}
 .mobile-menu li:first-child{border-left:1px solid #131a21;}
-.top-sec ,.second-part{display:none;}
+.top-sec ,.second-part{display:none; position:absolute; z-index:9}
 .menu ul li{float:none; line-height:30px;}
 .menu ul li a{background:none; padding:0px; display:inline-block;}
-.mealing-part{display:none;}
+.mealing-part{margin:10px 0 0 38px; float:none; display:none;}
 .menu{float:none;}
 .get-part{float:none; margin:10px 0 0 38px; width:150px; display:none;}
 .get-part a{font-size:16px;}
 .sec-list ul li{float:none;}
 .sec-list ul li a{background:none; display:inline-block;}
 .sec-list{margin:10px 0 0 0; line-height:30px; float:none; display:none;}
-.search-part input{width:220px  !important;}
+.search-submit{width:220px;}
 .full-bg p{font-size:22px;}
 .full-bg p span{font-size:17px;}
 .product-box ul li{width:327px; margin-bottom:30px;}
 .filter-list{margin-left:-175px;}
 .post-date ,.post-info{width:100%; float:none; text-align:center;}
 .post-date > img{min-width:100%;}
-.icon-hover{margin-left:45%;}
-.event-box{padding:20px 0;}
+.icon-hover{margin-left:45%!important;}
+.event-box{padding:20px 0!important;}
 .resu-box > img{width:100%;}
 .spacial-heading{line-height:19px;}
 
@@ -93,13 +126,60 @@
 .mo-media li{float:left; list-style:none; margin-right:5px; margin-top:10px;}
 .mo-media li:hover img{opacity:0.8;}
 .mob-button{border-top:1px solid #474747; margin-top:22px; text-align:center;}
-.icon-img{padding:16% 0;}
+.search-heading{padding:0 27px; margin-bottom:10px;}
+.icon-img{padding:25px 0 22px 0;}
+.full-bg{display:none;}
+
+.mobile-section{display:block; margin-top:-1px;}
+.mobile-section ul{background:#e8ae13; height:83px; list-style:none;}
+.mobile-section ul li{float:left; width:50%; text-align:center;}
+.mobile-section ul li:last-child a{color:#a11c3a; font-size:17px; font-weight:600; line-height:80px; text-transform:uppercase;}
+.mobile-section ul li:last-child a:hover{color:#fff; text-decoration:none;}
+.mobile-section ul li:first-child{background:#a11c3a url(../images/border-bg.png) right top no-repeat; width:50%; height:83px;}
+.mobile-section ul li:first-child a{color:#fff; font-family:Georgia, "Times New Roman", Times, serif; font-size:20px; font-style:italic; display:block;}
+.mobile-section ul li:first-child a:hover{color:#161514; text-decoration:none;}
+.mobile-section ul li:first-child a img{display:block; margin:0 auto; margin-top:15px;}
+.mobile-info{background:#fff url(../images/down-arrow.png) center 30px no-repeat; padding:30px 0; text-align:center;}
+.mobile-info h2{color:#a11c3a; font-size:24px; font-weight:600; text-transform:uppercase; padding:35px 0 15px 0;}
+.mobile-info p{color:#484848; font-size:15px; font-weight:400; line-height:25px; padding:0 131px;}
+.mobile-info button{background:#a11c3a; border:none; border-radius:20px; color:#fff; font-weight:600; font-size:15px; padding:0 35px; height:30px; margin-top:20px; text-transform:uppercase;}
+.mobile-info button:hover{background:#e8ae13;}
+
+/*======================Catalayze campus engagement Pages css=====================================*/
+.atricle-box h1{font-size:21px;}
+.atricle-box p{font-size:14px; line-height:25px;}
+.tab-list li{font-size:14px; padding:25px 49px;}
+.tab-title p{font-size:13px; line-height:22px;}
+.graph-heading{font-size:15px;}
+.month-staturech{margin:0px; text-align:center;}
+.month-pic img{float:none; margin:0;}
+.year-heading2 ,.year-heading3{float:none; margin:0;}
+.section-middle h6{font-size:19px;}
+.two-lineHeading{padding:18px 20px 10px 20px;}
+.product-list ul li:last-child{margin:30px 0 0 0;}
+.product-list ul{text-align:center; letter-spacing:30px;}
+.product-list ul li{letter-spacing:normal; float:none; display:inline-block; vertical-align:top; width:44%; margin:0 auto; margin-top:30px;}
+.product-list{padding-top:0px;}
+
+/*======================Resources Pages css=====================================*/
+.details-view h2 a{font-size:15px; margin-left:15px; padding-left:30px;}
+.grid-articl p{margin-right:15px;}
+.order-info{margin-bottom:20px;}
+.save-search ,.save-search2{width:200px;}
+.submit-button{padding:0 8px; font-size:13px;}
+.mail-box{width:120px;}
+
+
+
+
+.gridView .grid-infoBox{ width :  48%;}
 
 
 
 }
 
 @media screen and (max-width:767px){
+.gridView .grid-infoBox{ float : none; width :  96%; margin : 5px auto; }
 .logo img{width:50%;}
 .banner-info{top:80px;}
 .banner-h1 ,.title-box p{font-size:17px; line-height:20px; margin-bottom:10px;}
@@ -108,7 +188,7 @@
 .flex-control-nav{display:block;}
 .menu{width:auto;}
 .menu ul ,.mealing-part ,.get-part{margin-left:10px;}
-.top-sec ,.second-part{background:#313b43; padding-bottom:10px; overflow:hidden;}
+.top-sec ,.second-part{background:#313b43; padding:10px; overflow:hidden;}
 .title-box button{margin:0px;}
 .full-bg p span{font-size:16px;}
 .full-bg p{font-size:19px;}
@@ -130,46 +210,80 @@
 .media-icon li{display:inline-block; float:none;}
 .search-section{margin:20px 0 0 0px; text-align:center;}
 .full-bg{display:none;}
-
-.mobile-section{display:block;}
-.mobile-section ul{background:#e8ae13 url(../images/new-bg.png) no-repeat; height:83px; list-style:none;}
-.mobile-section ul li{float:left;}
-.mobile-section ul li:last-child a{color:#a11c3a; font-size:17px; font-weight:600; line-height:80px; text-transform:uppercase; margin-left:35px;}
-.mobile-section ul li:last-child a:hover{color:#fff; text-decoration:none;}
-.mobile-section ul li:first-child a{color:#fff; font-family:Georgia, "Times New Roman", Times, serif; font-size:20px; font-style:italic; margin-left:20px; display:block;}
-.mobile-section ul li:first-child a:hover{color:#161514; text-decoration:none;}
-.mobile-section ul li:first-child a img{display:block; margin:15px 0 0 30px;}
-.mobile-info{background:#fff url(../images/down-arrow.png) center 30px no-repeat; padding:30px 0; text-align:center;}
-.mobile-info h2{color:#a11c3a; font-size:24px; font-weight:600; text-transform:uppercase; padding:35px 0 15px 0;}
-.mobile-info p{color:#484848; font-size:15px; font-weight:400; line-height:25px; padding:0 131px;}
-.mobile-info button{background:#a11c3a; border:none; border-radius:20px; color:#fff; font-weight:600; font-size:15px; padding:0 35px; height:30px; margin-top:20px; text-transform:uppercase;}
-.mobile-info button:hover{background:#e8ae13;}
 .search-section{margin:30px 0 0 0;}
 
 .filter-mob{display:none;}
 .rsesources-sec .col-lg-3.col-md-3.col-sm-6{padding:0px 8px; width:50%; float:left;}
-.icon-img{padding:19% 0;}
+.search-heading{padding:0 70px; margin-bottom:22px;}
+
+/*=========================Article pages css============================*/
+.program-boxInfo h1{margin:7px 120px 10px 0;}
+.related-right-box h1{margin-top:20px;}
+.program-box-1{float:left; width:40%;}
+.program-boxInfo{float:right; width:55%; margin-left:15px;}
+.succes-infoMain{margin-bottom:0px;}
+/*======================Catalayze campus engagement Pages css=====================================*/
+.side-menu h1{font-size:15px; text-align:left; padding-left:22px;}
+.side-menu ul li{font-size:14px;}
+.side-menu ul li > a{display:inline-block;}
+.side-menu{margin-bottom:30px;}
+.tab-list li{padding:25px 30.6px;}
+.tab-main{margin-top:30px;}
+.graph-heading ,.section-middle h6{font-size:18px;}
+.grid-articl h1{margin-top:20px;}
+.grid-articl p{margin-right:30px;}
+
+/*======================Resources Pages css=====================================*/
+.grid-view ,.order-by ,.grid-filter{padding:25px;}
+.grid-view ul li ,.order-by h2{font-size:16px;}
+.save-search{width:190px;}
+.grid-view ul li+li{float:right; margin-left:10px;}
+.order-info{margin-bottom:10px;}
+.center-icon img{width:auto;}
+.center-icon{left:18%; top:45px;}
+.custom-select{width:85%!important;}
+.new-box{margin-bottom:30px;}
+.mail-box{width:175px;}
+.submit-button{padding:0 15px;}
+/*======================Whate we do Pages css=====================================*/
+.sub-menu{display:block!important; margin-right:20px;}
+.new-menu ul li{float:none; background:none; border-top:1px solid #fff;}
+.new-menu ul li a{margin-left:0px;}
+.new-menu ul li:hover span{background:none;}
+
+
+
+
+
+
 }
+
+@media screen and (max-width:629px){
+.search-heading{padding:0 25px; margin-bottom:12px;}
+.tab-list li{float:none; border-top:3px solid #ececec; font-size:15px;}
+.tab-list li + li{border-left:none;}
+.tab-title{padding:25px 0 0 0;}
+}
+
 
 
 @media screen and (max-width:480px){
 .second-part{overflow:inherit; background:none;}
-.logo img{width:70%;}
 .title-box button{display:none;}
 .banner-h1{font-size:27px; line-height:35px; background:url(../images/beading-border.png) top left no-repeat; padding-top:5px;}
 .graph-pic{margin-top:30px;}
 .mealing-part ,.get-part{display:none;}
 .sec-list{display:none;}
 .search-part{margin:40px 0 0 -20px;}
-.search-part input{height:45px;}
-.search-icon{top:10px;}
+.search-submit{height:45px;}
+.sumit-serch{top:10px;}
 .mealing-part ,.get-part{display:none;}
 .mobile-menu li{line-height:63px; padding:0 14px;}
 .banner-main .flex-direction-nav .flex-next ,.flex-direction-nav .flex-prev{background:none;}
 .min-heightimg img{width:100%; min-height:350px;}
 .banner-info{left:0%; margin:0; top:250px;}
 .title-box p{display:none;}
-.product-box ul li{width:260px;}
+.product-box ul li{width:300px;}
 .product-box button .strong{font-size:14px;}
 .hover-icon{left:110px;}
 .mobile-info p{color:#484848; font-size:15px; font-weight:400; line-height:25px; padding:0 15px;}
@@ -177,7 +291,6 @@
 .event-product h1 span{display:none;}
 .post-date h2{display:none;}
 .post-info h3{display:block; color:#d9890b; font-size:12px; font-weight:400; padding:15px 0; text-align:center; text-transform:uppercase;}
-
 .post-date > img {min-width: inherit;}
 .event-box{border-bottom:1px solid #c5c5c5;}
 .post-info p{font-size:16px; color:#000; font-weight:400; line-height:28px; width:232px; margin:0 auto; text-decoration:underline;}
@@ -185,7 +298,7 @@
 .resu-box > img{float:none; min-width:100%;}
 .footer-se p{text-align:center;}
 .search-section{margin:30px 0 0 0; text-align:center;}
-.search-section input{width:175px !important;}
+.search-section input{width:175px;}
 .row{margin:0;}
 .footer-logo{text-align:center; border-bottom:1px solid #474747; padding:15px 0; margin-bottom:10px;}
 .footer-list ,.footer-list2{display:none; border-bottom:1px solid #666;}
@@ -215,19 +328,80 @@
 .filter-mob li ul li a{font-size:14px; background:none; padding:0px 8px;}
 .rsesources-sec .col-lg-3.col-md-3.col-sm-6{padding:0px 8px; width:100%; float:none;}
 .resu-box h4 a{background:url(../images/arrow-red.png) right center no-repeat;}
+.new-link span{display:inline-block; float:right; font-size:13px; text-transform:uppercase; background:url(../images/border-3.png) 0px 0px no-repeat; padding-left:30px;}
+.new-link a{padding:0 10px 0 30px;}
+.new-link a{background:url(../images/arrow-red.png) right center no-repeat;}
+.logo-2{display:block; width:145px!important; height:85px;}
+.logo-1{display:none;}
+/*=========================Article pages css============================*/
+.resource-serch{margin-bottom:20px;}
+.succes-infoMain{padding:0px;}
+.program-bammer h2{margin-top:150px;}
+.inside-banner{height:300px;}
+.inside-pageHeading{font-size:32px;}
+.succes-infoLeft h4{font-size:14px;}
+.program-date ,.succes-infoLeft p{margin:15px 0;}
+.program-boxInfo h1{margin:0px 20px 10px 0;}
+.program-box-1 ,.program-boxInfo{float:none; width:100%;}
+.program-box-1 > img{width:100%;}
+.program-boxInfo{margin:10px 0 0 0;}
+
+/*======================Catalayze campus engagement Pages css=====================================*/
+.tab-list li{padding:20px 13.8px; font-size:15px;}
+.details-view{margin-right:-15px;}
+.grid-articl p{line-height:25px;}
+.center-icon{left:25%;}
+
+/*======================Resources Pages css=====================================*/
+.save-search ,.save-search2{width:370px;}
+
+
 }
 
+
+
+
+
+
+
 @media screen and (max-width:360px){
-.search-part{margin:40px 0 0 -65px;}
+.search-part{margin:40px 0 0 -90px;}
 #monile-view .flex-direction-nav .flex-prev {left:135px !important;}
 #monile-view .flex-direction-nav .flex-next {right:135px !important;}
+/*=========================Article pages css============================*/
+.resource-serch input{font-size:14px;}
+/*======================Catalayze campus engagement Pages css=====================================*/
+.side-menu h1{font-size:13px;}
+.grid-infoBox{padding:13px 0 0 0; margin:20px 0;}
+.grid-info2{padding:0px;}
+.section-middle h6{padding:10px 0;}
+.section-middle{padding-top:30px;}
+.center-icon img{width:auto;}
+.grid-articl p{margin-right:0px;}
+.graph-heading{font-size:13px;}
+/*======================Resources Pages css=====================================*/
+.custom-select{width:75%!important;}
+.save-search ,.save-search2{width:250px;}
+.center-icon{left:35%;}
+
+
 }
 
 @media screen and (max-width:320px){
-.search-part{margin:40px 0 0 -80px;}
+.search-part{margin:35px 0 0 -110px;}
 #monile-view .flex-direction-nav .flex-prev {left:150px !important;}
 #monile-view .flex-direction-nav .flex-next {right:150px !important;}
-.logo img{width: 85%;}
+.search-button{top:0px; right:-10px;}
+.srcch-text{width:280px;}
+/*======================Resources Pages css=====================================*/
+.grid-view ul li + li{margin-left:0px; float:left;}
+.grid-view ul li:first-child{margin-right:20px;}
+.save-search ,.save-search2{width:210px;}
+.details-view h2 a{font-size:14px;}
+.center-icon{TOP:35px}
+.mail-box{width:140px;}
+
+
 }
 
 

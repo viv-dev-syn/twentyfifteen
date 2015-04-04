@@ -113,8 +113,7 @@
           </div>
           <div class="col-lg-4 col-sm-4 col-sm-4">
             <div class="search-section">
-              <input type="text" placeholder="Join Our Mailing list"/>
-              <button>Subscribe</button>
+             <?php echo do_shortcode('[gravityform id="1" title="false" description="false" ajax="true"]'); ?>
             </div>
           </div>
         </div>
@@ -160,8 +159,7 @@
       <div class="clearfix"></div>
       <div class="mob-button">
         <div class="search-section">
-          <input type="text" placeholder="Join Our Mailing list"/>
-          <button>Subscribe</button>
+         <?php echo do_shortcode('[gravityform id="1" title="false" description="false" ajax="true"]'); ?>
         </div>
       </div>
     </div>
@@ -171,8 +169,8 @@
 
 <?php wp_footer(); ?>
 
-<script type="text/javascript">
 
+<script type="text/javascript">
 $('ul.sub-menu li a').prepend('<span>&middot;</span> ');
 
    $(window).load(function(){

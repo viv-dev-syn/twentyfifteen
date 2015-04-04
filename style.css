@@ -5767,3 +5767,54 @@ p > video {
 		padding: 3.84615% 0;
 	}
 }
+.search-part{float:left; margin:42px 0 0 20px; position:relative;}
+.search-submit{border:2px solid #9b979a; background:none; border-radius:30px; height:53px; width:238px; padding:0 50px 0 20px;  box-sizing:border-box;}
+.sumit-serch{background:none; border:none; border-radius:0px;  background:url(images/search-icon.png) right center no-repeat; width:22px; height:22px; position:absolute; right:18px; top:15px; cursor:pointer; display:block;}
+
+.resource-serch{padding:0px; text-align:right; position:relative; margin-bottom:5px;}
+.srcch-text{background:none; border:2px solid #cbcbcb; border-radius:30px; color:#5c5959; font-size:16px; font-family: 'Open Sans', sans-serif; font-style:italic; font-weight:100; height:43px; width:289px !important; padding:0 60px 0 20px !important; box-sizing:border-box;}
+.search-button{background:url(images/srrch-button.png) right center no-repeat !important; border-radius:none !important; position:absolute !important; right:15px !important; top:px !important; cursor:pointer !important; border:none !important; width:35px !important; border-left:2px solid #cbcbcb !important; height:43px !important;}
+
+
+.event-product{margin:0 0 35px 0;}
+.event-product h1{color:#252d36; font-size:28px; font-weight:300; border-bottom:3px solid #d7d7d7; padding-bottom:2px; text-transform:uppercase;}
+.event-product h1 span{background:url(images/next-icon.png) right center no-repeat; padding-right:10px; text-align:center; float:right; font-size:14px; font-weight:500; line-height:25px; margin-top:10px;} 
+.event-product h1 span a{color:#252d36;}
+.event-product h1 span a:hover{text-decoration:none; color:#a11c3a;}
+.event-box{margin:0 0 50px 0; padding:0;}
+.slide-warp ul li{list-style:none;}
+.succes-infoMain{margin:0px 0 40px 0; padding:15px 0 0 0px;}
+.succes-infoLeft{background:#fff; padding:30px 35px;}
+.program-bammer{background:url(images/program-banner.jpg) center top no-repeat; background-size:cover;}
+.program-bammer a img{display:block; float:right;}
+.program-bammer h2{background:url(images/p-heading.png) 0px 0px no-repeat; height:41px; font-size:14px; padding-left:20px; line-height:40px; margin-top:227px;}
+.program-bammer h2 a{color:#fff; background:url(images/white-icon.png) right center no-repeat; padding-right:10px;}
+.program-bammer h2 a:hover{color:#a11c3a; text-decoration:none;}
+.program-date{color:#626262; font-size:14px; font-weight:400; margin:25px 0 18px 0;}
+.succes-infoLeft h4{color:#2c2b2b; font-size:18px; font-weight:600; line-height:23px; text-transform:uppercase;}
+.succes-infoLeft p{color:#3b3b3b; font-size:14px; font-weight:300; line-height:22px; margin:25px 0;}
+.by-owder{background:none; color:#eb9a1b; font-size:14px; font-weight:500; height:31px; text-transform:uppercase; padding:5px 0 0 0px;}
+.by-owder img {  border: 1px solid #ccc;   border-radius: 50%; float: left; height: 31px; margin: 0 5px;width: 31px;
+}
+.by-owder > span {padding-top: 5px;vertical-align: middle;}
+
+.related-right-box{margin:0px;}
+.related-right-box h1{color:#0e0e0e; font-size:18px; font-weight:600; margin-bottom:28px; text-transform:uppercase;}
+.related-right-box ul li{list-style:none;}
+.diffrent-program{background:#fff; padding:28px 30px; margin-bottom:30px;}
+.program-box-1{float:left; width:40%; position:relative;}
+.red-icom{position:absolute; right:0px; top:0px;}
+.program-box-1 h2{position:absolute; left:0px; bottom:0px; font-size:12px; font-weight:600; background:url(images/p-small-bg.png) 0px 0px no-repeat; height:30px;
+line-height:30px; width:123px; padding-left:10px;}
+.program-box-1 h2 a{color:#fff; background:url(images/white-icon.png) right center no-repeat; padding-right:10px;}
+.program-box-1 h2 a:hover{color:#a11c3a; text-decoration:none;}
+
+.program-boxInfo{float:right; width:55%; margin-left:15px;}
+.program-date2{color:#626262; font-size:14px; font-weight:400;}
+.program-boxInfo h1{color:#2c2b2b; font-size:16px; font-weight:600; line-height:24px; text-transform:uppercase; margin:7px 28px 10px 0;}
+.new-menu ul li:last-child {padding: 0 25px;}
+.new-menu ul li a{ padding:0 10px;}
+
+.side-menu li a.active{background: none repeat scroll 0 0 #fff;color: #111111;font-size: 13px; font-weight: bold;    height: 58px; padding-left: 22px;text-transform: uppercase; }
+.side-menu span {display: none;}
+.new-box1 p{padding:0px !important;}

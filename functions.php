@@ -499,7 +499,7 @@ function events_func( $atts ) {
 
 				$html .='</div>
               <div class="post-info">
-                <p>'.do_shortcode($event->post_content).'</p>
+                '.do_shortcode($event->post_content).'
                 <h3>'.$venue.'<span>'.$date.'</span></h3>
                 <i class="icon-hover"></i> </div>
               <div class="clearfix"></div>
@@ -563,8 +563,14 @@ function trim_taxonomy_content($atts, $content = '') {
  $images = get_option( 'cfi_alternate_images' );
  $attachment = wp_get_attachment_image_src( $images[$tid], array(32,32) );
  $str ="";
- if( $attachment !== FALSE )
+ if( $attachment !== FALSE ){
        $str = '<img  width=32 height=32 class="tax-image" src="'.$attachment[0].'" >';
+	  }
+else{
+	$upload_dir = wp_upload_dir(); 
+	 $upload_dir['baseurl']; 
+	$str = '<img  width=32 height=32 class="tax-image" src="'.get_bloginfo('stylesheet_directory').'/images/open-book.png"/>';
+	}
  $str .= $tname;
  return $str ;
 }
@@ -977,16 +983,71 @@ add_action('wp_head','header_banner');
 
 function header_banner()
 {
-global $post;
 
-$banner_src = get_post_meta($post->ID,'wpcf-_custom_header_image',true);
+	echo '<script type="text/javascript">
+				var ajaxurl = "'. admin_url('admin-ajax.php').'";
+			  </script>';
 
-
-if($banner_src){
-echo '<style>
-.custom-header-banner{
-background: url("'.$banner_src.'") no-repeat scroll center top / cover hsla(0, 0%, 0%, 0) !important;
+	global $post;
+	$banner_src = get_post_meta($post->ID,'wpcf-_custom_header_image',true);
+	
+	if($banner_src){
+		echo '<style>
+				.custom-header-banner{
+				background: url("'.$banner_src.'") no-repeat scroll center top / cover hsla(0, 0%, 0%, 0) !important;
+				}
+			</style>';
+	}
 }
-</style>';
+
+
+
+add_action( 'wp_footer', 'ajax_action_javascript' ); // Write our JS below here
+
+function ajax_action_javascript() { 
+	
 }
+add_action( 'wp_ajax_get_page_by_slug', 'get_page_by_slug_callback' );
+add_action( 'wp_ajax_nopriv_get_page_by_slug', 'get_page_by_slug_callback' );
+
+function get_page_by_slug_callback() {
+
+	global $wpdb; // this is how you get access to the database
+	$pieces = explode("/", $_POST['slug']);
+	
+	$url = rtrim($_POST['slug'],"/");
+	$pieces = explode("/", $url);
+	//$whatever = explode('/', $_POST['slug']) ;
+
+		$slug = end($pieces);
+		
+		//$post = get_page_by_path($slug,ARRAY,'page');
+      // echo $slug;
+	  $the_slug = 'my_slug';
+		$args=array(
+		  'name' => $slug,
+		  'post_type' => 'page',
+		  'post_status' => 'publish',
+		  'numberposts' => 1
+		);
+		$my_posts = get_posts($args);
+		if( $my_posts ) {
+		   echo do_shortcode( $my_posts[0]->post_content );
+		}
+	wp_die(); // this is required to terminate immediately and return a proper response
+}
+add_shortcode('display_content','display_content');
+function  display_content($atts){
+   extract(shortcode_atts(array(
+      'post_id' => 1,
+   ), $atts));
+   // echo $post_id;
+   
+   if($post_id!=""){
+		$postContent = get_post($post_id);
+		$content = $postContent->post_content;
+    	//$content = apply_filters('the_content',$content);
+		echo do_shortcode($content);
+   }
+	
 }

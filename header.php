@@ -7,7 +7,7 @@
  * @package WordPress
  * @subpackage Twenty_Fifteen
  * @since Twenty Fifteen 1.0
- */ 
+ */
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
 <head>
@@ -39,6 +39,7 @@
 	<![endif]-->
 	<script>(function(){document.documentElement.className='js'})();</script>
 	<?php wp_head(); ?>
+	
 </head>
 
 <body <?php body_class(); ?>>
@@ -53,7 +54,7 @@
         <?php echo do_shortcode( '[rev_slider home_page]' ); ?>
       </div>
 	  <?php else: ?>
-	  <div class="inside-banner"></div>
+	  <div class="inside-banner custom-header-banner"></div>
 	  <?php endif; ?>
       <!--==================Menu Start=================--->
       <nav class="menu-part">
@@ -82,9 +83,7 @@
                   </ul> -->
                 </div>
                 <div class="mealing-part">
-				<?php //echo do_shortcode('[gravityform id=1 ajax=true]'); ?>
-                  <input type="text" placeholder="Join Our Mailing list"/>
-                  <button class="sub-butt">Submit</button>
+				<?php echo do_shortcode('[gravityform id="1" title="false" description="false" ajax="true"]'); ?>
                 </div>
                 <div class="get-part"><a href="#">Get Involved</a></div>
                 <div class="clearfix"></div>
@@ -127,7 +126,7 @@
               </div>
             </div>
           </div>
-		<?php if(!is_page('home')): ?>
+		<?php if(!is_front_page()): ?>
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12">
 				  <h1 class="inside-pageHeading"><?php echo empty( $post->post_parent ) ? get_the_title( $post->ID ) : get_the_title( $post->ID  ); //$post->post_parent ?></h1>
@@ -150,8 +149,15 @@
 		<div class="container">
 		  <div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12">
-			  <?php echo qt_custom_breadcrumbs(); ?>
-			  <div class="clearfix"></div>
+			<ul>
+			  <?php // echo qt_custom_breadcrumbs(); ?>
+				
+					<?php if(function_exists('bcn_display_list'))
+					{
+						bcn_display_list();
+					}?>
+			</ul>
+				<div class="clearfix"></div>
 			</div>
 		  </div>
 		</div>
